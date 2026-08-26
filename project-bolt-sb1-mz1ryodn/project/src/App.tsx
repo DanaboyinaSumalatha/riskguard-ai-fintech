@@ -1,5 +1,42 @@
 import React, { useState } from 'react';
-import { Shield, X } from 'lucide-react';
+import { Shield, X, User, LogOut, Check, Zap, CreditCard, Brain } from 'lucide-react';
+
+const shieldDataUri = `data:image/svg+xml;utf8,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#5EE1FF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0A1930" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7FE8FF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#2DD4FF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0F2A5A" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="15"/></filter>
+  </defs>
+  <!-- Outer Glow -->
+  <ellipse cx="200" cy="240" rx="190" ry="230" fill="url(#glow)" opacity="0.6"/>
+  <!-- Main Shield Shape -->
+  <path d="M200 20 L360 80 L360 200 Q360 360 200 460 Q40 360 40 200 L40 80 Z" fill="url(#glass)" stroke="#A5F3FF" stroke-width="3" stroke-opacity="0.8"/>
+  <path d="M200 35 L340 90 L340 200 Q340 340 200 435 Q60 340 60 200 L60 90 Z" fill="none" stroke="white" stroke-width="1.5" stroke-opacity="0.3"/>
+  <!-- Top shine -->
+  <ellipse cx="140" cy="110" rx="70" ry="35" fill="white" opacity="0.25" transform="rotate(-20 140 110)"/>
+  <!-- Circuit Lines -->
+  <g stroke="#5EE1FF" stroke-width="1.2" opacity="0.7" fill="none">
+    <path d="M200 140 L200 100 M140 160 L100 120 M260 160 L300 120 M120 200 L70 200 M280 200 L330 200 M140 260 L90 300 M260 260 L310 300 M200 300 L200 380"/>
+    <circle cx="200" cy="100" r="4" fill="#5EE1FF"/><circle cx="100" cy="120" r="4" fill="#5EE1FF"/><circle cx="300" cy="120" r="4" fill="#5EE1FF"/><circle cx="70" cy="200" r="3" fill="#5EE1FF"/><circle cx="330" cy="200" r="3" fill="#5EE1FF"/>
+  </g>
+  <!-- Center Core -->
+  <circle cx="200" cy="230" r="35" fill="none" stroke="#5EE1FF" stroke-width="1" opacity="0.4"/>
+  <circle cx="200" cy="230" r="22" fill="none" stroke="#A5F3FF" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="200" cy="230" r="12" fill="#5EE1FF" filter="url(#blur)" opacity="0.8"/>
+  <circle cx="200" cy="230" r="8" fill="#C7F9FF"/>
+  <!-- AI Label -->
+  <rect x="135" y="290" width="130" height="22" rx="11" fill="#0B2A4A" stroke="#5EE1FF" stroke-opacity="0.5"/>
+  <text x="200" y="305" text-anchor="middle" font-family="Arial" font-size="10" fill="#7FE8FF" letter-spacing="1">AI PROTECTED</text>
+</svg>
+`)}`;
 
 export default function App() {
   const [showDemo, setShowDemo] = useState(false);
@@ -13,7 +50,6 @@ export default function App() {
   const [device, setDevice] = useState('Known device');
   const [merchant, setMerchant] = useState('Trusted');
   const [result, setResult] = useState('');
-
   const handleLogin = () => { if(email){ setShowDashboard(true); setShowLogin(false); } };
   const runCheck = () => {
     const v = parseFloat(amount) || 0;
@@ -32,50 +68,24 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#050A14] text-white">
-      <header className="max-w-7xl mx-auto pt-4 px-4">
-        <div className="flex justify-between items-center px-6 py-3 rounded-full bg-[#0F1C2E]/60 border border-white/10">
-          <div className="flex items-center gap-2 font-bold"><Shield size={20} className="text-cyan-300"/> RiskGuard AI</div>
-          <div className="flex gap-2"><button onClick={()=>setShowLogin(true)} className="px-4 py-2 rounded-full bg-white/10 text-xs">Login</button><button className="px-5 py-2 rounded-full bg-[#5EE1FF] text-black font-bold text-xs">Get Started</button></div>
-        </div>
-      </header>
-
-      <section className="max-w-7xl mx-auto px-6 pt-12 text-center">
+      <header className="max-w-7xl mx-auto mt-4 px-4"><div className="flex justify-between items-center px-6 py-3 rounded-full bg-[#0F1C2E]/60 border border-white/10"><div className="flex items-center gap-2 font-bold"><Shield size={20} className="text-cyan-300"/> RiskGuard AI</div><div className="flex gap-2"><button onClick={()=>setShowLogin(true)} className="px-4 py-2 rounded-full bg-white/10 text-xs">Login</button><button className="px-5 py-2 rounded-full bg-[#5EE1FF] text-black font-bold text-xs">Get Started</button></div></div></header>
+      <section className="max-w-7xl mx-auto px-6 pt-10 text-center">
         <div className="inline-flex px-4 py-1 rounded-full bg-[#0B1C2E] border border-cyan-500/30 text-xs text-cyan-300">Now in Beta • AI-Powered Fraud Protection</div>
-        <h1 className="mt-6 text-[42px] md:text-[58px] font-bold leading-[1.05]">Stop fraud in real time<br/>with AI that learns</h1>
+        <h1 className="mt-6 text-[40px] md:text-[56px] font-bold leading-[1.1]">Stop fraud in real time<br/>with AI that learns</h1>
         <p className="mt-4 text-white/50 max-w-[600px] mx-auto">Monitor transactions, detect anomalies, and protect your users with adaptive AI.</p>
-        <div className="mt-8 flex justify-center gap-4">
-          <button onClick={()=>setShowLogin(true)} className="px-8 py-3 rounded-full bg-[#5EE1FF] text-black font-bold">Start Free Trial →</button>
-          <button onClick={()=>setShowDemo(true)} className="px-8 py-3 rounded-full border border-white/20 bg-white/5">See How It Works →</button>
+        <div className="mt-8 flex justify-center gap-4"><button onClick={()=>setShowLogin(true)} className="px-8 py-3 rounded-full bg-[#5EE1FF] text-black font-bold">Start Free Trial →</button><button onClick={()=>setShowDemo(true)} className="px-8 py-3 rounded-full border border-white/20 bg-white/5">See How It Works →</button></div>
+
+        {/* ✅ PREMIUM 3D SHIELD - NO DOWNLOAD - PURE CODE */}
+        <div className="mt-12 relative mx-auto w-[400px] md:w-[560px] flex flex-col items-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-400/20 blur-[100px] rounded-full"></div>
+          <img src={shieldDataUri} alt="3D Shield" className="relative w-[380px] md:w-[460px] h-auto drop-shadow-[0_0_80px_rgba(94,225,255,0.8)]" />
+          <p className="mt-4 text-[11px] tracking-[0.35em] text-cyan-300/60">3D SHIELD • REAL TIME PROTECTION • 99.9% SECURE</p>
         </div>
 
-        {/* PREMIUM 3D SHIELD */}
-        <div className="mt-14 mx-auto w-[360px] md:w-[520px] flex flex-col items-center">
-          <div className="relative w-[340px] h-[420px] rounded-t-[100px] rounded-b-[180px] bg-gradient-to-br from-cyan-200/40 via-[#5EE1FF]/30 to-blue-900/60 border-2 border-cyan-100/60 shadow-[0_0_100px_rgba(94,225,255,0.7),inset_0_2px_0_rgba(255,255,255,0.8)] flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-t-[100px] rounded-b-[180px]"></div>
-            <div className="absolute top-[10%] left-[15%] w-[35%] h-[20%] bg-white/40 rounded-full blur-[10px] rotate-[-20deg]"></div>
-            <div className="relative flex flex-col items-center">
-              <div className="relative w-24 h-24">
-                <div className="absolute inset-0 bg-cyan-300/20 blur-[20px] rounded-full animate-pulse"></div>
-                <div className="absolute inset-0 border-2 border-cyan-200/40 rounded-full animate-spin" style={{animationDuration:'8s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-[#5EE1FF] rounded-full shadow-[0_0_30px_#5EE1FF] animate-pulse"></div>
-              </div>
-              <div className="mt-6 px-4 py-1.5 rounded-full bg-cyan-400/20 border border-cyan-300/30 text-[10px] tracking-widest text-cyan-100">AI PROTECTED</div>
-            </div>
-            <div className="absolute top-[25%] left-[25%] w-2.5 h-2.5 bg-cyan-100 rounded-full shadow-[0_0_10px_#5EE1FF]"></div>
-            <div className="absolute top-[25%] right-[25%] w-2.5 h-2.5 bg-cyan-100 rounded-full shadow-[0_0_10px_#5EE1FF]"></div>
-          </div>
-          <p className="mt-6 text-[11px] tracking-[0.3em] text-cyan-300/60">3D SHIELD • REAL TIME PROTECTION • 99.9% SECURE</p>
-        </div>
-
-        <div className="mt-16 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          <div className="bg-[#0F1C2E]/60 border border-white/10 rounded-2xl p-5"><p className="font-bold">99.9% Accuracy</p><p className="text-xs text-white/40">Validated detection rate</p></div>
-          <div className="bg-[#0F1C2E]/60 border border-white/10 rounded-2xl p-5"><p className="font-bold">Sub-50ms Detection</p><p className="text-xs text-white/40">Real-time response</p></div>
-          <div className="bg-[#0F1C2E]/60 border border-white/10 rounded-2xl p-5"><p className="font-bold">50M+ Protected</p><p className="text-xs text-white/40">Trusted globally</p></div>
-        </div>
+        <div className="mt-12 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto"><div className="bg-[#0F1C2E]/60 border border-white/10 rounded-2xl p-5"><p className="font-bold">99.9% Accuracy</p><p className="text-xs text-white/40">Validated detection rate</p></div><div className="bg-[#0F1C2E]/60 border border-white/10 rounded-2xl p-5"><p className="font-bold">Sub-50ms Detection</p><p className="text-xs text-white/40">Real-time response</p></div><div className="bg-[#0F1C2E]/60 border border-white/10 rounded-2xl p-5"><p className="font-bold">50M+ Protected</p><p className="text-xs text-white/40">Trusted globally</p></div></div>
       </section>
-
-      {showLogin && (<div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50"><div className="bg-[#0F1C2E] border border-cyan-400/20 rounded-2xl p-6 w-full max-w-sm"><h3 className="font-bold text-center">Welcome Back</h3><input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" className="w-full mt-4 bg-[#060A18] border border-white/10 rounded-xl p-3 text-sm"/><button onClick={handleLogin} className="w-full mt-4 py-3 bg-[#5EE1FF] text-black rounded-full font-bold">Login →</button><button onClick={()=>setShowLogin(false)} className="w-full mt-2 text-xs text-white/40">Cancel</button></div></div>)}
-      {showDemo && (<div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"><div className="bg-[#0F172A] border border-white/10 rounded-2xl p-6 w-full max-w-4xl max-h-[90vh] overflow-auto"><button onClick={()=>setShowDemo(false)} className="float-right bg-white/10 rounded-full w-8 h-8 flex items-center justify-center"><X size={14}/></button><h3 className="text-xl font-bold">Transaction Fraud Checker</h3><div className="grid md:grid-cols-3 gap-4 mt-6"><div className="bg-[#060A18] border border-white/10 rounded-xl p-4"><input value={amount} onChange={e=>setAmount(e.target.value)} className="w-full bg-[#10182E] border border-white/10 rounded-lg p-2 text-sm mb-2"/><select value={country} onChange={e=>setCountry(e.target.value)} className="w-full bg-[#10182E] border border-white/10 rounded-lg p-2 text-xs mb-2"><option>Same country</option><option>High-risk country</option></select><select value={time} onChange={e=>setTime(e.target.value)} className="w-full bg-[#10182E] border border-white/10 rounded-lg p-2 text-xs"><option>Normal hours</option><option>3 AM (Suspicious)</option></select></div><div className="bg-[#060A18] border border-white/10 rounded-xl p-4"><div className="bg-[#10182E] rounded-lg p-3 text-xs">${amount}</div><button onClick={runCheck} className="w-full mt-3 py-3 bg-white text-black rounded-full font-bold text-sm">Analyze →</button></div><div className="bg-[#060A18] border border-white/10 rounded-xl p-4">{!result?<div className="text-xs text-white/30">Click Analyze</div>:<div><div className="text-2xl font-bold">{result.split('|')[1]}/100</div><div className="font-bold mt-2">{result.split('|')[0]}</div></div>}</div></div></div></div>)}
+      {showLogin && (<div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"><div className="bg-[#0F1C2E] border border-cyan-400/20 rounded-2xl p-6 w-full max-w-sm"><h3 className="font-bold text-center">Welcome Back</h3><input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" className="w-full mt-4 bg-[#060A18] border border-white/10 rounded-xl p-3 text-sm"/><button onClick={handleLogin} className="w-full mt-4 py-3 bg-[#5EE1FF] text-black rounded-full font-bold">Login →</button><button onClick={()=>setShowLogin(false)} className="w-full mt-2 text-xs text-white/40">Cancel</button></div></div>)}
+      {showDemo && (<div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#0F172A] border border-white/10 rounded-2xl p-6 w-full max-w-4xl max-h-[90vh] overflow-auto"><button onClick={()=>setShowDemo(false)} className="float-right bg-white/10 rounded-full w-8 h-8 flex items-center justify-center"><X size={14}/></button><h3 className="text-xl font-bold">Transaction Fraud Checker</h3><div className="grid md:grid-cols-3 gap-4 mt-6"><div className="bg-[#060A18] border border-white/10 rounded-xl p-4"><input value={amount} onChange={e=>setAmount(e.target.value)} className="w-full bg-[#10182E] border border-white/10 rounded-lg p-2 text-sm mb-2"/><select value={country} onChange={e=>setCountry(e.target.value)} className="w-full bg-[#10182E] border border-white/10 rounded-lg p-2 text-xs mb-2"><option>Same country</option><option>High-risk country</option></select><select value={time} onChange={e=>setTime(e.target.value)} className="w-full bg-[#10182E] border border-white/10 rounded-lg p-2 text-xs"><option>Normal hours</option><option>3 AM (Suspicious)</option></select></div><div className="bg-[#060A18] border border-white/10 rounded-xl p-4"><div className="bg-[#10182E] rounded-lg p-3 text-xs">${amount}</div><button onClick={runCheck} className="w-full mt-3 py-3 bg-white text-black rounded-full font-bold text-sm">Analyze →</button></div><div className="bg-[#060A18] border border-white/10 rounded-xl p-4">{!result?<div className="text-xs text-white/30">Click Analyze</div>:<div><div className="text-2xl font-bold">{result.split('|')[1]}/100</div><div className="font-bold mt-2">{result.split('|')[0]}</div></div>}</div></div></div></div>)}
     </div>
   );
 }
