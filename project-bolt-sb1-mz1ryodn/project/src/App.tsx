@@ -8,6 +8,11 @@ export default function App() {
   const [email, setEmail] = useState('');
   const [amount, setAmount] = useState('');
   const [result, setResult] = useState('');
+  const [country, setCountry] = useState('Same country');
+  const [card, setCard] = useState('Visa');
+  const [time, setTime] = useState('Normal hours');
+  const [device, setDevice] = useState('Known device');
+  const [merchant, setMerchant] = useState('Trusted');
 
   const handleLogin = () => {
     if(email){ setShowDashboard(true); setShowLogin(false); }
@@ -82,71 +87,65 @@ export default function App() {
             </div>
           </section>
 
-{/* NEW PRO DEMO - ALL OPTIONS VISIBLE + DETAILED AI */}
-<section id="demo" className="max-w-5xl mx-auto p-6">
-  <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-6 backdrop-blur">
-    <h3 className="text-xl font-semibold">Live Demo - Transaction Fraud Checker</h3>
-    <p className="text-xs text-white/40 mb-5">Real-time AI analysis • 6 parameters • Full risk breakdown</p>
+          <section id="demo" className="max-w-5xl mx-auto p-6">
+            <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-6 backdrop-blur">
+              <h3 className="text-xl font-semibold">Live Demo - Transaction Fraud Checker</h3>
+              <p className="text-xs text-white/40 mb-5">Real-time AI analysis • 6 parameters • Click to select</p>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label className="text-[11px] text-white/50">Amount (USD)</label>
-        <input value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Enter amount - ex: 3500" className="w-full mt-1 bg-black/40 border border-cyan-500/20 rounded-lg p-3 focus:border-cyan-400 outline-none" />
-        <div className="grid grid-cols-3 gap-2 mt-3 text-[11px]">
-          {['Same country','Different country','High-risk country'].map(o=><div key={o} className="bg-white/5 border border-white/10 rounded-lg p-2 text-center">{o}</div>)}
-        </div>
-        <p className="text-[10px] text-white/30 mt-1">Country options ↑</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-[11px] text-white/50">Amount (USD)</label>
+                    <input value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Enter amount - ex: 3500" className="w-full mt-1 bg-black/40 border border-cyan-500/20 rounded-lg p-3 focus:border-cyan-400 outline-none" />
+                  </div>
 
-        <div className="grid grid-cols-4 gap-2 mt-4 text-[11px]">
-          {['Visa','MasterCard','Amex','Unknown'].map(o=><div key={o} className="bg-white/5 border border-white/10 rounded-lg p-2 text-center">{o}</div>)}
-        </div>
-        <p className="text-[10px] text-white/30 mt-1">Card Type options ↑</p>
+                  <div><p className="text-[11px] text-white/50 mb-2">Country - {country}</p><div className="flex flex-wrap gap-2">{['Same country','Different country','High-risk country'].map(o=><button key={o} onClick={()=>setCountry(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${country===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
 
-        <div className="grid grid-cols-3 gap-2 mt-4 text-[11px]">
-          {['Normal hours','3 AM (Suspicious)','Multiple in 1 min'].map(o=><div key={o} className="bg-white/5 border border-white/10 rounded-lg p-2 text-center">{o}</div>)}
-        </div>
-        <p className="text-[10px] text-white/30 mt-1">Transaction Time options ↑</p>
+                  <div><p className="text-[11px] text-white/50 mb-2">Card Type - {card}</p><div className="flex flex-wrap gap-2">{['Visa','MasterCard','Amex','Unknown'].map(o=><button key={o} onClick={()=>setCard(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${card===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
 
-        <div className="grid grid-cols-3 gap-2 mt-4 text-[11px]">
-          {['Known device','New device','VPN / Proxy'].map(o=><div key={o} className="bg-white/5 border border-white/10 rounded-lg p-2 text-center">{o}</div>)}
-        </div>
-        <p className="text-[10px] text-white/30 mt-1">Device options ↑</p>
+                  <div><p className="text-[11px] text-white/50 mb-2">Transaction Time - {time}</p><div className="flex flex-wrap gap-2">{['Normal hours','3 AM (Suspicious)','Multiple in 1 min'].map(o=><button key={o} onClick={()=>setTime(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${time===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
 
-        <div className="grid grid-cols-3 gap-2 mt-4 text-[11px]">
-          {['Trusted','New merchant','Blacklisted'].map(o=><div key={o} className="bg-white/5 border border-white/10 rounded-lg p-2 text-center">{o}</div>)}
-        </div>
-        <p className="text-[10px] text-white/30 mt-1">Merchant options ↑</p>
-      </div>
+                  <div><p className="text-[11px] text-white/50 mb-2">Device - {device}</p><div className="flex flex-wrap gap-2">{['Known device','New device','VPN / Proxy'].map(o=><button key={o} onClick={()=>setDevice(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${device===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
 
-      <div>
-        <button onClick={()=>{
-          const v=parseFloat(amount)||0;
-          if(v==0) setResult('Enter amount');
-          else if(v>2000) setResult(`BLOCKED|High risk 89/100|Amount: $${v} > $2000 (Risk +40%)|Time: 3 AM Suspicious (Risk +25%)|Device: VPN/Proxy (Risk +15%)|Merchant: Blacklisted (Risk +20%)|Country: High-risk (Risk +10%)|Action: Transaction BLOCKED & Card Frozen`);
-          else setResult(`SAFE|Low risk 12/100|Amount: $${v} Normal (Safe)|Time: Normal hours (Safe)|Device: Known device (Safe)|Merchant: Trusted (Safe)|Country: Same country (Safe)|Action: Approved - Payment Successful`);
-        }} className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold">Analyze Transaction → Run AI Check</button>
+                  <div><p className="text-[11px] text-white/50 mb-2">Merchant - {merchant}</p><div className="flex flex-wrap gap-2">{['Trusted','New merchant','Blacklisted'].map(o=><button key={o} onClick={()=>setMerchant(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${merchant===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
+                </div>
 
-        {result && (
-          <div className={`mt-4 p-4 rounded-xl border text-sm ${result.includes('BLOCKED')? 'bg-red-500/10 border-red-500/20' : 'bg-green-500/10 border-green-500/20'}`}>
-            {result.split('|').map((line,i)=>(
-              <div key={i} className={`${i==0? 'text-lg font-bold mb-2' : 'text-xs py-1 border-b border-white/5'} ${i==0 && result.includes('BLOCKED')? 'text-red-300' : i==0? 'text-green-300' : 'text-white/70'}`}>
-                {i==0? (result.includes('BLOCKED')? '🚫 '+line : '✅ '+line) : '• '+line}
+                <div>
+                  <button onClick={()=>{
+                    const v=parseFloat(amount)||0;
+                    if(v===0){setResult('ERROR|Please enter amount'); return;}
+                    let score=0; let details=[];
+                    if(v>3000){score+=40; details.push(`Amount $${v} > $3000 CRITICAL +40%`)} else if(v>2000){score+=25; details.push(`Amount $${v} > $2000 High +25%`)} else {details.push(`Amount $${v} Normal +0%`)}
+                    if(country==='High-risk country'){score+=25; details.push(`Country: ${country} +25%`)} else if(country==='Different country'){score+=10; details.push(`Country: Different +10%`)} else {details.push(`Country: Same country +0% Safe`)}
+                    if(card==='Unknown'){score+=15; details.push(`Card: Unknown +15%`)} else {details.push(`Card: ${card} +0% Safe`)}
+                    if(time==='3 AM (Suspicious)'){score+=20; details.push(`Time: ${time} +20%`)} else if(time==='Multiple in 1 min'){score+=35; details.push(`Time: ${time} +35%`)} else {details.push(`Time: ${time} +0% Safe`)}
+                    if(device==='VPN / Proxy'){score+=15; details.push(`Device: ${device} +15%`)} else if(device==='New device'){score+=5; details.push(`Device: New +5%`)} else {details.push(`Device: Known +0% Safe`)}
+                    if(merchant==='Blacklisted'){score+=30; details.push(`Merchant: ${merchant} +30%`)} else if(merchant==='New merchant'){score+=10; details.push(`Merchant: New +10%`)} else {details.push(`Merchant: Trusted +0% Safe`)}
+                    const status=score>=50?'BLOCKED':'SAFE'; setResult(`${status}|Risk Score ${score}/100|${details.join('|')}|DECISION: ${status==='BLOCKED'?'🚫 Transaction BLOCKED & Card Frozen Immediately':'✅ Approved - Payment Successful'}`);
+                  }} className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold hover:from-cyan-400 hover:to-blue-500 transition">Analyze Transaction → Run AI Check</button>
+
+                  {result && (
+                    <div className={`mt-4 p-4 rounded-xl border text-sm ${result.includes('BLOCKED')? 'bg-red-500/10 border-red-500/30' : result.includes('ERROR')?'bg-yellow-500/10 border-yellow-500/20' : 'bg-green-500/10 border-green-500/30'}`}>
+                      {result.split('|').map((line,i)=>(
+                        <div key={i} className={`${i===0? 'text-lg font-bold mb-3 pb-2 border-b border-white/10' : 'text-[12px] py-1.5 border-b border-white/5 last:border-0'} ${i===0 && result.includes('BLOCKED')? 'text-red-300' : i===0 && result.includes('SAFE')? 'text-green-300' : 'text-white/70'}`}>
+                          {i===0? line : `• ${line}`}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="mt-4 bg-black/40 border border-white/10 rounded-lg p-3 text-[11px] text-white/50 leading-relaxed">
+                    <p className="font-semibold text-white/70 mb-1">🧠 How AI Calculates:</p>
+                    <p>Amount {'>'} $3000 = +40%, {'>'} $2000 = +25%</p>
+                    <p>High-risk country + Blacklisted = Auto BLOCK</p>
+                    <p>Score {'>'}= 50 = BLOCKED, {'<'} 50 = SAFE</p>
+                    <p className="mt-2 text-cyan-400">Try: 50 + Same + Trusted = SAFE</p>
+                    <p className="text-red-400">Try: 3500 + High-risk + Blacklisted + VPN + 3AM = BLOCKED 100/100</p>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
-        )}
-
-        <div className="mt-4 bg-black/30 border border-white/10 rounded-lg p-3 text-[11px] text-white/50">
-          <p className="font-semibold text-white/70 mb-1">How AI Decides:</p>
-          <p>✓ Amount {'>'} $2000 = High risk</p>
-          <p>✓ 3AM + VPN + Blacklisted = Auto BLOCK</p>
-          <p>✓ Normal + Known + Trusted = Auto SAFE</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+            </div>
+          </section>
         </>
       ) : (
         <section className="max-w-6xl mx-auto p-6">
