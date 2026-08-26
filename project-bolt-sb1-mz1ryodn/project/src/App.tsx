@@ -34,76 +34,80 @@ export default function App() {
     <div className="min-h-screen bg-[#050A14] text-white relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-cyan-500/[0.07] blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
       </div>
 
       <header className="relative z-20 max-w-7xl mx-auto mt-4 mx-4 md:mx-auto">
         <div className="flex justify-between items-center px-6 py-3 rounded-full bg-[#0F1C2E]/60 backdrop-blur-xl border border-white/[0.08]">
-          <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]"><Shield size={20}/></div><span className="text-[18px] font-bold tracking-tight">RiskGuard AI</span><div className="hidden md:flex items-center gap-6 ml-10 text-[13px] text-white/40"><span className="hover:text-white cursor-pointer">Product</span><span className="hover:text-white cursor-pointer">Features</span><span className="hover:text-white cursor-pointer">Pricing</span><span className="hover:text-white cursor-pointer">Security</span><span className="hover:text-white cursor-pointer">Docs</span></div></div>
+          <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center"><Shield size={20}/></div><span className="text-[18px] font-bold">RiskGuard AI</span></div>
           <div className="flex gap-3 items-center">
-            {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-[13px] hover:bg-white/10">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px] shadow-[0_0_20px_rgba(94,225,255,0.4)] hover:shadow-[0_0_30px_rgba(94,225,255,0.6)]">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[11px] flex gap-2 items-center bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full max-w-[150px] truncate"><User size={12}/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[11px] flex gap-1 items-center"><LogOut size={12}/>Logout</button></div>)}
+            {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-[13px]">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px]">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[11px] bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full flex gap-1"><User size={12}/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[11px] flex gap-1"><LogOut size={12}/>Logout</button></div>)}
           </div>
         </div>
       </header>
 
       {showDashboard && (
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-6">
-          <div className="bg-[#0F1C2E]/80 border border-cyan-400/20 rounded-2xl p-4 flex justify-between items-center backdrop-blur">
-            <div><h2 className="text-[18px] font-bold">Welcome, {email.split('@')[0]}! 👋</h2><p className="text-cyan-300 text-[11px] mt-0.5">● Premium Active</p></div>
+          <div className="bg-[#0F1C2E]/80 border border-cyan-400/20 rounded-2xl p-4 flex justify-between items-center">
+            <div><h2 className="text-[18px] font-bold">Welcome, {email.split('@')[0]}! 👋</h2><p className="text-cyan-300 text-[11px]">● Premium Active</p></div>
             <button onClick={()=>setShowDemo(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px]">Open Fraud Checker →</button>
           </div>
         </div>
       )}
 
       <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-12 pb-8 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/30 text-[12px] text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/30 text-[12px] text-cyan-300">
           <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span> Now in Beta • AI-Powered Fraud Protection
         </div>
 
-        <h1 className="mt-6 text-[36px] md:text-[56px] font-bold leading-[1.05] tracking-tight">Stop fraud in real time<br/>with AI that learns</h1>
-        <p className="mt-4 text-[14px] md:text-[16px] leading-6 text-white/50 max-w-[600px] mx-auto">Monitor transactions, detect anomalies, and protect your users with adaptive AI that evolves to stop fraud before it happens.</p>
+        <h1 className="mt-6 text-[36px] md:text-[56px] font-bold leading-[1.05]">Stop fraud in real time<br/>with AI that learns</h1>
+        <p className="mt-4 text-[15px] text-white/50 max-w-[600px] mx-auto">Monitor transactions, detect anomalies, and protect your users with adaptive AI that evolves to stop fraud before it happens.</p>
 
         <div className="mt-8 flex justify-center gap-4">
-          {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-8 py-3.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[14px] shadow-[0_0_25px_rgba(94,225,255,0.5)]">Start Free Trial →</button><button onClick={()=>setShowDemo(true)} className="px-8 py-3.5 rounded-full border border-white/15 bg-white/[0.05] backdrop-blur text-white text-[14px] hover:bg-white/10">See How It Works →</button></>):(<button onClick={()=>setShowDemo(true)} className="px-10 py-4 rounded-full bg-[#5EE1FF] text-black font-bold text-[15px] shadow-[0_0_30px_rgba(94,225,255,0.6)]">Click Here to Open Fraud Checker Card →</button>)}
+          {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-8 py-3.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[14px]">Start Free Trial →</button><button onClick={()=>setShowDemo(true)} className="px-8 py-3.5 rounded-full border border-white/15 bg-white/[0.05] text-white text-[14px]">See How It Works →</button></>):(<button onClick={()=>setShowDemo(true)} className="px-10 py-4 rounded-full bg-[#5EE1FF] text-black font-bold text-[15px]">Click Here to Open Fraud Checker Card →</button>)}
         </div>
 
-        {/* 3D SHIELD - PURE CODE - 100% WORKING */}
-        <div className="mt-12 relative mx-auto w-[340px] h-[340px] md:w-[480px] md:h-[480px] flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-blue-600/20 blur-[80px] rounded-[60px]"></div>
-          <div className="relative w-full h-full rounded-[48px] bg-gradient-to-br from-[#0F1C2E]/90 to-[#050A14]/90 border border-cyan-400/20 backdrop-blur-xl shadow-[0_0_80px_rgba(34,211,238,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
-              <div className="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-cyan-400 to-transparent"></div>
-              <div className="absolute top-[30%] left-[20%] w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-              <div className="absolute bottom-[30%] right-[20%] w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+        {/* ✅✅✅ 3D SHIELD - IKKADA UNDI - 100% KANIPISTUNDI ✅✅✅ */}
+        <div className="mt-14 relative mx-auto w-[380px] h-[380px] md:w-[520px] md:h-[520px] flex items-center justify-center">
+          <div className="absolute w-[400px] h-[400px] bg-cyan-400/20 blur-[80px] rounded-full"></div>
+
+          <div className="relative w-[300px] h-[340px] md:w-[360px] md:h-[400px] bg-gradient-to-b from-cyan-300/40 to-blue-700/40 backdrop-blur-xl border-[2px] border-cyan-200/50 rounded-t-[80px] rounded-b-[150px] shadow-[0_0_100px_rgba(34,211,238,0.6),inset_0_2px_0_rgba(255,255,255,0.4)] flex flex-col items-center justify-center">
+            {/* Shine */}
+            <div className="absolute top-[10%] left-[15%] w-[35%] h-[25%] bg-white/30 rounded-full blur-[8px] rotate-[-20deg]"></div>
+
+            {/* Inner Shield Border */}
+            <div className="absolute inset-[12px] border border-white/20 rounded-t-[68px] rounded-b-[138px]"></div>
+
+            {/* Center Circuit */}
+            <div className="relative w-20 h-20">
+              <div className="absolute inset-0 bg-cyan-300/30 blur-xl rounded-full animate-pulse"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-2 border-cyan-300/50 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-cyan-400/20 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-[#5EE1FF] rounded-full shadow-[0_0_20px_#5EE1FF]"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-cyan-200 rounded-full animate-ping"></div>
             </div>
-            <div className="relative">
-              <div className="absolute inset-0 blur-[30px] bg-cyan-400/30 rounded-full scale-150"></div>
-              <div className="relative w-[220px] h-[260px] md:w-[260px] md:h-[300px] rounded-t-[60px] rounded-b-[120px] bg-gradient-to-br from-cyan-200/30 via-[#5EE1FF]/40 to-blue-600/30 border border-cyan-300/50 shadow-[0_0_60px_rgba(94,225,255,0.6),inset_0_0_30px_rgba(94,225,255,0.3)] backdrop-blur flex items-center justify-center">
-                <div className="absolute inset-[2px] rounded-t-[58px] rounded-b-[118px] bg-gradient-to-br from-white/20 to-transparent"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-6 h-6 bg-cyan-300 rounded-full animate-ping absolute"></div>
-                  <div className="w-6 h-6 bg-[#5EE1FF] rounded-full shadow-[0_0_20px_#5EE1FF] relative"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 border border-cyan-400/50 rounded-full animate-spin" style={{ animationDuration: '3s' }}></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-cyan-400/20 rounded-full"></div>
-                </div>
-                <div className="absolute top-4 left-6 w-[40%] h-[30%] bg-gradient-to-br from-white/30 to-transparent rounded-full blur-[2px] rotate-12"></div>
-              </div>
-            </div>
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-[1px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent"></div>
+
+            {/* Circuit lines */}
+            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent"></div>
+            <div className="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-cyan-300/30 to-transparent"></div>
+
+            {/* Dots */}
+            <div className="absolute top-[25%] left-[25%] w-2 h-2 bg-cyan-300 rounded-full shadow-[0_0_10px_#5EE1FF]"></div>
+            <div className="absolute top-[25%] right-[25%] w-2 h-2 bg-cyan-300 rounded-full shadow-[0_0_10px_#5EE1FF]"></div>
+            <div className="absolute bottom-[30%] left-[20%] w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
+            <div className="absolute bottom-[30%] right-[20%] w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
           </div>
         </div>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5 hover:border-cyan-400/20 transition"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Check size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">99.9% Accuracy</p><p className="text-[11px] text-white/40 mt-1">Validated detection rate</p></div>
-          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5 hover:border-cyan-400/20 transition"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Zap size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">Sub-50ms Detection</p><p className="text-[11px] text-white/40 mt-1">Real-time response</p></div>
-          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5 hover:border-cyan-400/20 transition"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Shield size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">50M+ Protected</p><p className="text-[11px] text-white/40 mt-1">Trusted by fintechs globally</p></div>
+        <div className="mt-16 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="bg-[#0F1C2E]/60 border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Check size={16} className="text-cyan-300"/></div><p className="font-bold">99.9% Accuracy</p><p className="text-[11px] text-white/40">Validated detection rate</p></div>
+          <div className="bg-[#0F1C2E]/60 border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Zap size={16} className="text-cyan-300"/></div><p className="font-bold">Sub-50ms Detection</p><p className="text-[11px] text-white/40">Real-time response</p></div>
+          <div className="bg-[#0F1C2E]/60 border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Shield size={16} className="text-cyan-300"/></div><p className="font-bold">50M+ Protected</p><p className="text-[11px] text-white/40">Trusted by fintechs globally</p></div>
         </div>
 
         <div className="mt-8 grid md:grid-cols-3 gap-4 max-w-5xl mx-auto text-left">
-          <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><Shield size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">Fraud Shield - Active</p><p className="text-[11px] text-white/40">Monitoring live • No threats</p></div></div>
-          <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><CreditCard size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">Card Security</p><p className="text-[11px] text-white/40">3D Secure • 128-bit encryption</p></div></div>
-          <div className="bg-[#0F1C2E]/40 border border-cyan-400/10 rounded-2xl p-4 flex gap-3"><Brain size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">AI Brain - 1,247 blocked</p><p className="text-[11px] text-white/40">+12% vs yesterday • 98.4%</p></div></div>
+          <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><Shield size={18} className="text-cyan-300"/><div><p className="font-semibold text-[13px]">Fraud Shield - Active</p><p className="text-[11px] text-white/40">Monitoring live • No threats</p></div></div>
+          <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><CreditCard size={18} className="text-cyan-300"/><div><p className="font-semibold text-[13px]">Card Security</p><p className="text-[11px] text-white/40">3D Secure • 128-bit encryption</p></div></div>
+          <div className="bg-[#0F1C2E]/40 border border-cyan-400/10 rounded-2xl p-4 flex gap-3"><Brain size={18} className="text-cyan-300"/><div><p className="font-semibold text-[13px]">AI Brain - 1,247 blocked</p><p className="text-[11px] text-white/40">+12% vs yesterday • 98.4%</p></div></div>
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/[0.05] text-[11px] text-white/30">Trusted by 200+ fintech startups • SOC 2 compliant • ISO 27001 certified</div>
@@ -111,9 +115,8 @@ export default function App() {
 
       {showLogin && (
         <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="relative w-full max-w-[380px]"><div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-400/30 to-blue-500/20 rounded-[24px] blur-[15px]"></div>
-            <div className="relative bg-[#0F1C2E] border border-cyan-400/20 rounded-[24px] p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+          <div className="relative w-full max-w-[380px]">
+            <div className="relative bg-[#0F1C2E] border border-cyan-400/20 rounded-[24px] p-7">
               <div className="w-14 h-14 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-4"><Shield size={28} className="text-cyan-300"/></div>
               <h3 className="text-[22px] font-bold text-center">Welcome Back</h3><p className="text-[12px] text-white/40 text-center mt-1">Login to RiskGuard AI</p>
               <div className="mt-6 space-y-3"><input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter your Email" className="w-full bg-[#060A18] border border-white/10 rounded-xl p-3.5 text-sm outline-none focus:border-cyan-400/30"/><input type="password" placeholder="Password" className="w-full bg-[#060A18] border border-white/10 rounded-xl p-3.5 text-sm outline-none"/></div>
