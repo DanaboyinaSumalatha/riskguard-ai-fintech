@@ -43,10 +43,6 @@ export default function App() {
   const [device, setDevice] = useState('Known device');
   const [merchant, setMerchant] = useState('Trusted');
   const [result, setResult] = useState('');
-
-  // ✅ ONLY THIS 1 LINE ADDED
-  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-
   const handleLogin = () => { if(email){ setShowDashboard(true); setShowLogin(false); } };
   const runCheck = () => {
     const v = parseFloat(amount) || 0;
@@ -69,15 +65,7 @@ export default function App() {
 
       <header className="relative z-20 max-w-7xl mx-auto mt-4 mx-4 md:mx-auto">
         <div className="flex justify-between items-center px-6 py-3 rounded-full bg-[#0F1C2E]/60 backdrop-blur-xl border border-white/[0.08]">
-          <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]"><Shield size={20}/></div><span className="text-[18px] font-bold tracking-tight">RiskGuard AI</span>
-            <div className="hidden md:flex items-center gap-6 ml-10 text-[13px] text-white/40">
-              <span onClick={()=>go('product')} className="hover:text-white cursor-pointer">Product</span>
-              <span onClick={()=>go('features')} className="hover:text-white cursor-pointer">Features</span>
-              <span onClick={()=>go('pricing')} className="hover:text-white cursor-pointer">Pricing</span>
-              <span onClick={()=>go('security')} className="hover:text-white cursor-pointer">Security</span>
-              <span onClick={()=>go('docs')} className="hover:text-white cursor-pointer">Docs</span>
-            </div>
-          </div>
+          <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]"><Shield size={20}/></div><span className="text-[18px] font-bold tracking-tight">RiskGuard AI</span><div className="hidden md:flex items-center gap-6 ml-10 text-[13px] text-white/40"><span className="hover:text-white cursor-pointer">Product</span><span className="hover:text-white cursor-pointer">Features</span><span className="hover:text-white cursor-pointer">Pricing</span><span className="hover:text-white cursor-pointer">Security</span><span className="hover:text-white cursor-pointer">Docs</span></div></div>
           <div className="flex gap-3 items-center">
             {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-[13px] hover:bg-white/10">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px] shadow-[0_0_20px_rgba(94,225,255,0.4)]">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[11px] flex gap-2 items-center bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full max-w-[150px] truncate"><User size={12}/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[11px] flex gap-1 items-center"><LogOut size={12}/>Logout</button></div>)}
           </div>
@@ -86,7 +74,7 @@ export default function App() {
 
       {showDashboard && (<div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-6"><div className="bg-[#0F1C2E]/80 border border-cyan-400/20 rounded-2xl p-4 flex justify-between items-center backdrop-blur"><div><h2 className="text-[18px] font-bold">Welcome, {email.split('@')[0]}! 👋</h2><p className="text-cyan-300 text-[11px] mt-0.5">● Premium Active</p></div><button onClick={()=>setShowDemo(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px]">Open Fraud Checker →</button></div></div>)}
 
-      <section id="product" className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-12 pb-8 text-center">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-12 pb-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/30 text-[12px] text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.15)]"><span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span> Now in Beta • AI-Powered Fraud Protection</div>
         <h1 className="mt-6 text-[36px] md:text-[56px] font-bold leading-[1.05] tracking-tight">Stop fraud in real time<br/>with AI that learns</h1>
         <p className="mt-4 text-[14px] md:text-[16px] leading-6 text-white/50 max-w-[600px] mx-auto">Monitor transactions, detect anomalies, and protect your users with adaptive AI that evolves to stop fraud before it happens.</p>
@@ -98,19 +86,19 @@ export default function App() {
           <p className="mt-4 text-[11px] tracking-[0.35em] text-cyan-300/60">3D SHIELD • REAL TIME PROTECTION • 99.9% SECURE</p>
         </div>
 
-        <div id="features" className="mt-10 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <div className="mt-10 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
           <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Check size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">99.9% Accuracy</p><p className="text-[11px] text-white/40 mt-1">Validated detection rate</p></div>
-          <div id="pricing" className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Zap size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">Sub-50ms Detection</p><p className="text-[11px] text-white/40 mt-1">Real-time response</p></div>
+          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Zap size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">Sub-50ms Detection</p><p className="text-[11px] text-white/40 mt-1">Real-time response</p></div>
           <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Shield size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">50M+ Protected</p><p className="text-[11px] text-white/40 mt-1">Trusted by fintechs globally</p></div>
         </div>
 
-        <div id="security" className="mt-8 grid md:grid-cols-3 gap-4 max-w-5xl mx-auto text-left">
+        <div className="mt-8 grid md:grid-cols-3 gap-4 max-w-5xl mx-auto text-left">
           <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><Shield size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">Fraud Shield - Active</p><p className="text-[11px] text-white/40">Monitoring live • No threats</p></div></div>
           <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><CreditCard size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">Card Security</p><p className="text-[11px] text-white/40">3D Secure • 128-bit encryption</p></div></div>
           <div className="bg-[#0F1C2E]/40 border border-cyan-400/10 rounded-2xl p-4 flex gap-3"><Brain size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">AI Brain - 1,247 blocked</p><p className="text-[11px] text-white/40">+12% vs yesterday • 98.4%</p></div></div>
         </div>
 
-        <div id="docs" className="mt-10 pt-6 border-t border-white/[0.05] text-[11px] text-white/30">Trusted by 200+ fintech startups • SOC 2 compliant • ISO 27001 certified</div>
+        <div className="mt-10 pt-6 border-t border-white/[0.05] text-[11px] text-white/30">Trusted by 200+ fintech startups • SOC 2 compliant • ISO 27001 certified</div>
       </section>
 
       {showLogin && (<div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-md flex items-center justify-center p-4"><div className="relative w-full max-w-[380px]"><div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-400/30 to-blue-500/20 rounded-[24px] blur-[15px]"></div><div className="relative bg-[#0F1C2E] border border-cyan-400/20 rounded-[24px] p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"><div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div><div className="w-14 h-14 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-4"><Shield size={28} className="text-cyan-300"/></div><h3 className="text-[22px] font-bold text-center">Welcome Back</h3><p className="text-[12px] text-white/40 text-center mt-1">Login to RiskGuard AI</p><div className="mt-6 space-y-3"><input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter your Email" className="w-full bg-[#060A18] border border-white/10 rounded-xl p-3.5 text-sm outline-none focus:border-cyan-400/30"/><input type="password" placeholder="Password" className="w-full bg-[#060A18] border border-white/10 rounded-xl p-3.5 text-sm outline-none"/></div><button onClick={handleLogin} className="w-full mt-6 py-3.5 bg-[#5EE1FF] text-black rounded-full font-bold text-[14px]">Login & Continue →</button><button onClick={()=>setShowLogin(false)} className="w-full mt-3 py-2 text-[13px] text-white/40">Cancel</button></div></div></div>)}
