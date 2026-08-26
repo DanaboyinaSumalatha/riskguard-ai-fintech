@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, CreditCard, Brain, X, LogOut, User } from 'lucide-react';
+import { Shield, CreditCard, Brain, X, LogOut, User, Check, Zap } from 'lucide-react';
 
 export default function App() {
   const [showDemo, setShowDemo] = useState(false);
@@ -32,45 +32,79 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#050A14] text-white relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-cyan-500/5 blur-[100px] rounded-full"></div></div>
+      {/* GLOW BG */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-cyan-500/[0.07] blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"></div>
+      </div>
 
-      <header className="relative z-10 flex justify-between items-center px-6 md:px-16 py-5 border-b border-white/[0.05]">
-        <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center"><Shield size={20}/></div><span className="text-xl font-bold">RiskGuard AI</span></div>
-        <div className="flex gap-3 items-center">
-          {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-sm">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2 rounded-full bg-[#5EE1FF] text-black font-semibold text-sm">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[12px] flex gap-2 items-center bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full max-w-[180px] truncate"><User size={14} className="text-cyan-300"/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[12px] flex gap-1 items-center"><LogOut size={12}/>Logout</button></div>)}
+      {/* HEADER - PREMIUM GLASS - SAME LOGIC */}
+      <header className="relative z-20 max-w-7xl mx-auto mt-4 mx-4 md:mx-auto">
+        <div className="flex justify-between items-center px-6 py-3 rounded-full bg-[#0F1C2E]/60 backdrop-blur-xl border border-white/[0.08]">
+          <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]"><Shield size={20}/></div><span className="text-[18px] font-bold tracking-tight">RiskGuard AI</span><div className="hidden md:flex items-center gap-6 ml-10 text-[13px] text-white/40"><span className="hover:text-white cursor-pointer">Product</span><span className="hover:text-white cursor-pointer">Features</span><span className="hover:text-white cursor-pointer">Pricing</span><span className="hover:text-white cursor-pointer">Security</span><span className="hover:text-white cursor-pointer">Docs</span></div></div>
+          <div className="flex gap-3 items-center">
+            {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-[13px] hover:bg-white/10">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px] shadow-[0_0_20px_rgba(94,225,255,0.4)] hover:shadow-[0_0_30px_rgba(94,225,255,0.6)]">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[11px] flex gap-2 items-center bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full max-w-[150px] truncate"><User size={12}/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[11px] flex gap-1 items-center"><LogOut size={12}/>Logout</button></div>)}
+          </div>
         </div>
       </header>
 
-      {/* === ONLY THIS PART EDITED - LOGIN TARVATA DISPLAY === */}
+      {/* WELCOME BAR - LOGIN TARVATA - SAME LOGIC */}
       {showDashboard && (
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-6">
-          <div className="bg-[#0F1C2E]/80 border border-cyan-400/20 rounded-2xl p-4 flex justify-between items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-6">
+          <div className="bg-[#0F1C2E]/80 border border-cyan-400/20 rounded-2xl p-4 flex justify-between items-center backdrop-blur">
             <div><h2 className="text-[18px] font-bold">Welcome, {email.split('@')[0]}! 👋</h2><p className="text-cyan-300 text-[11px] mt-0.5">● Premium Active</p></div>
-            <div className="hidden md:flex gap-4"><div className="text-center"><p className="font-bold">12,847</p><p className="text-[10px] text-white/40">Scanned</p></div><div className="text-center"><p className="font-bold text-green-400">1,247</p><p className="text-[10px] text-white/40">Blocked</p></div></div>
+            <button onClick={()=>setShowDemo(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px]">Open Fraud Checker →</button>
           </div>
         </div>
       )}
-      {/* === HERO - Ippudu ALWAYS kanipistundi - Old lo!showDashboard valla blank vastundi === */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-14 pb-10 grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="inline-flex px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/20 text-[13px] text-cyan-300">🛡️ AI Fraud Detection v2.1</div>
-          <h1 className="mt-6 text-[40px] md:text-[48px] font-bold leading-[1.1]">Stop fraud in real time,<br/>with AI that learns.</h1>
-          <p className="mt-4 text-[14px] leading-6 text-white/50 max-w-[480px]">Monitor transactions, detect anomalies, and block fraudulent activity instantly using our self-learning AI.</p>
-          <div className="mt-8 flex gap-4">{!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-7 py-3 rounded-full bg-[#5EE1FF] text-black font-semibold text-[14px]">Start free trial →</button><button onClick={()=>setShowDemo(true)} className="px-7 py-3 rounded-full border border-cyan-400/30 bg-[#0B1C2E]/50 text-cyan-300 text-[14px]">Try Live Demo</button></>):(<button onClick={()=>setShowDemo(true)} className="px-7 py-3 rounded-full bg-[#5EE1FF] text-black font-semibold text-[14px]">Open Fraud Checker →</button>)}</div>
-        </div>
-        <div className="space-y-4">
-          <div className="bg-[#0F1C2E]/80 border border-white/[0.08] rounded-2xl p-5 flex gap-4"><Shield className="text-cyan-300"/><div><p className="font-semibold text-[15px]">Fraud Shield - AI Protection Active</p><p className="text-[12px] text-white/40">Monitoring live • No threats detected</p></div></div>
-          <div className="bg-[#0F1C2E]/60 border border-white/[0.08] rounded-2xl p-5 flex gap-4"><CreditCard className="text-cyan-300"/><div><p className="font-semibold text-[15px]">Card Security</p><p className="text-[12px] text-white/40">3D Secure enabled • 128-bit encryption</p></div></div>
-          <div className="bg-[#0F1C2E]/60 border border-cyan-400/20 rounded-2xl p-5 flex gap-4"><Brain className="text-cyan-300"/><div><p className="font-semibold text-[15px]">AI Brain - 1,247 blocked today</p><p className="text-[12px] text-white/40">+12% vs yesterday • Confidence 98.4%</p></div></div>
-        </div>
-      </section>
-      <div className="relative z-10 border-t border-white/[0.05] py-8 flex justify-center"><button onClick={()=>setShowDemo(true)} className="px-8 py-3 rounded-full border border-cyan-400/40 bg-[#0B1C2E]/50 text-cyan-300 text-[14px]">Click Here to Open Fraud Checker Card →</button></div>
-      {/* === EDIT END === */}
 
-      {/* LOGIN - SAME AS OLD - NO CHANGE */}
+      {/* HERO - CONCEPT 3 DESIGN - ONLY UI CHANGED */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-12 pb-8 text-center">
+        {/* BETA BADGE */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/30 text-[12px] text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+          <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span> Now in Beta • AI-Powered Fraud Protection
+        </div>
+
+        <h1 className="mt-6 text-[36px] md:text-[56px] font-bold leading-[1.05] tracking-tight">Stop fraud in real time<br/>with AI that learns</h1>
+        <p className="mt-4 text-[14px] md:text-[16px] leading-6 text-white/50 max-w-[600px] mx-auto">Monitor transactions, detect anomalies, and protect your users with adaptive AI that evolves to stop fraud before it happens.</p>
+
+        <div className="mt-8 flex justify-center gap-4">
+          {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-8 py-3.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[14px] shadow-[0_0_25px_rgba(94,225,255,0.5)]">Start Free Trial →</button><button onClick={()=>setShowDemo(true)} className="px-8 py-3.5 rounded-full border border-white/15 bg-white/[0.05] backdrop-blur text-white text-[14px] hover:bg-white/10">See How It Works →</button></>):(<button onClick={()=>setShowDemo(true)} className="px-10 py-4 rounded-full bg-[#5EE1FF] text-black font-bold text-[15px] shadow-[0_0_30px_rgba(94,225,255,0.6)]">Click Here to Open Fraud Checker Card →</button>)}
+        </div>
+
+        {/* 3D SHIELD - CSS VERSION - NO IMAGE NEEDED */}
+        <div className="mt-12 relative mx-auto w-[300px] h-[300px] md:w-[380px] md:h-[380px]">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 blur-[60px] rounded-full"></div>
+          <div className="relative w-full h-full rounded-[40px] bg-gradient-to-br from-[#0F1C2E]/80 to-[#060A18]/80 border border-cyan-400/20 backdrop-blur-xl flex items-center justify-center shadow-[0_0_80px_rgba(34,211,238,0.2)]">
+            <div className="w-48 h-56 relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-300 to-blue-500 opacity-20 blur-xl"></div>
+              <Shield size={180} className="text-cyan-300 drop-shadow-[0_0_30px_rgba(34,211,238,0.8)]" strokeWidth={1.2}/>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-cyan-300 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* 3 STATS CARDS - CONCEPT 3 */}
+        <div className="mt-10 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5 hover:border-cyan-400/20 transition"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Check size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">99.9% Accuracy</p><p className="text-[11px] text-white/40 mt-1">Validated detection rate</p></div>
+          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5 hover:border-cyan-400/20 transition"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Zap size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">Sub-50ms Detection</p><p className="text-[11px] text-white/40 mt-1">Real-time response</p></div>
+          <div className="bg-[#0F1C2E]/60 backdrop-blur border border-white/[0.08] rounded-2xl p-5 hover:border-cyan-400/20 transition"><div className="w-9 h-9 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-3"><Shield size={16} className="text-cyan-300"/></div><p className="font-bold text-[15px]">50M+ Protected</p><p className="text-[11px] text-white/40 mt-1">Trusted by fintechs globally</p></div>
+        </div>
+
+        {/* OLD 3 CARDS - STILL THERE BUT NEATER - HIDDEN IN CONCEPT 3? KEEP FOR FUNCTIONALITY */}
+        <div className="mt-8 grid md:grid-cols-3 gap-4 max-w-5xl mx-auto text-left">
+          <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><Shield size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">Fraud Shield - Active</p><p className="text-[11px] text-white/40">Monitoring live • No threats</p></div></div>
+          <div className="bg-[#0F1C2E]/40 border border-white/[0.05] rounded-2xl p-4 flex gap-3"><CreditCard size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">Card Security</p><p className="text-[11px] text-white/40">3D Secure • 128-bit encryption</p></div></div>
+          <div className="bg-[#0F1C2E]/40 border border-cyan-400/10 rounded-2xl p-4 flex gap-3"><Brain size={18} className="text-cyan-300 mt-0.5"/><div><p className="font-semibold text-[13px]">AI Brain - 1,247 blocked</p><p className="text-[11px] text-white/40">+12% vs yesterday • 98.4%</p></div></div>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-white/[0.05] text-[11px] text-white/30">Trusted by 200+ fintech startups • SOC 2 compliant • ISO 27001 certified</div>
+      </section>
+
+      {/* LOGIN - SAME LOGIC - ONLY UI POLISHED */}
       {showLogin && (
-        <div className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="absolute inset-0 pointer-events-none"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-cyan-500/10 blur-[100px] rounded-full"></div></div>
+        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative w-full max-w-[380px]"><div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-400/30 to-blue-500/20 rounded-[24px] blur-[15px]"></div>
             <div className="relative bg-[#0F1C2E] border border-cyan-400/20 rounded-[24px] p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
@@ -84,7 +118,7 @@ export default function App() {
         </div>
       )}
 
-      {/* FRAUD CHECKER - SAME AS OLD - NO CHANGE */}
+      {/* FRAUD CHECKER - SAME LOGIC - NO CHANGE */}
       {showDemo && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative bg-[#0F172A] border-2 border-white/[0.12] rounded-[28px] p-8 w-full max-w-5xl max-h-[90vh] overflow-y-auto">
