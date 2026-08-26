@@ -36,31 +36,38 @@ export default function App() {
 
       <header className="relative z-10 flex justify-between items-center px-6 md:px-16 py-5 border-b border-white/[0.05]">
         <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center"><Shield size={20}/></div><span className="text-xl font-bold">RiskGuard AI</span></div>
-        <div className="flex gap-3">
-          {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-sm">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2 rounded-full bg-[#5EE1FF] text-black font-semibold text-sm">Get Started</button></>):(<div className="flex items-center gap-3"><span className="text-sm flex gap-2 items-center"><User size={16}/>{email}</span><button onClick={()=>setShowDashboard(false)} className="px-4 py-2 rounded-full bg-white/10 text-sm flex gap-1 items-center"><LogOut size={14}/>Logout</button></div>)}
+        <div className="flex gap-3 items-center">
+          {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-sm">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2 rounded-full bg-[#5EE1FF] text-black font-semibold text-sm">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[12px] flex gap-2 items-center bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full max-w-[180px] truncate"><User size={14} className="text-cyan-300"/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[12px] flex gap-1 items-center"><LogOut size={12}/>Logout</button></div>)}
         </div>
       </header>
 
-      {!showDashboard && (
-        <>
-          <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-14 pb-10 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/20 text-[13px] text-cyan-300">🛡️ AI Fraud Detection v2.1</div>
-              <h1 className="mt-6 text-[40px] md:text-[48px] font-bold leading-[1.1]">Stop fraud in real time,<br/>with AI that learns.</h1>
-              <p className="mt-4 text-[14px] leading-6 text-white/50 max-w-[480px]">Monitor transactions, detect anomalies, and block fraudulent activity instantly using our self-learning AI.</p>
-              <div className="mt-8 flex gap-4"><button onClick={()=>setShowLogin(true)} className="px-7 py-3 rounded-full bg-[#5EE1FF] text-black font-semibold text-[14px]">Start free trial →</button><button onClick={()=>setShowDemo(true)} className="px-7 py-3 rounded-full border border-cyan-400/30 bg-[#0B1C2E]/50 text-cyan-300 text-[14px]">Try Live Demo</button></div>
-            </div>
-            <div className="space-y-4">
-              <div className="bg-[#0F1C2E]/80 border border-white/[0.08] rounded-2xl p-5 flex gap-4"><Shield className="text-cyan-300"/><div><p className="font-semibold text-[15px]">Fraud Shield - AI Protection Active</p><p className="text-[12px] text-white/40">Monitoring live • No threats detected</p></div></div>
-              <div className="bg-[#0F1C2E]/60 border border-white/[0.08] rounded-2xl p-5 flex gap-4"><CreditCard className="text-cyan-300"/><div><p className="font-semibold text-[15px]">Card Security</p><p className="text-[12px] text-white/40">3D Secure enabled • 128-bit encryption</p></div></div>
-              <div className="bg-[#0F1C2E]/60 border border-cyan-400/20 rounded-2xl p-5 flex gap-4"><Brain className="text-cyan-300"/><div><p className="font-semibold text-[15px]">AI Brain - 1,247 blocked today</p><p className="text-[12px] text-white/40">+12% vs yesterday • Confidence 98.4%</p></div></div>
-            </div>
-          </section>
-          <div className="relative z-10 border-t border-white/[0.05] py-8 flex justify-center"><button onClick={()=>setShowDemo(true)} className="px-8 py-3 rounded-full border border-cyan-400/40 bg-[#0B1C2E]/50 text-cyan-300 text-[14px]">Click Here to Open Fraud Checker Card →</button></div>
-        </>
+      {/* === ONLY THIS PART EDITED - LOGIN TARVATA DISPLAY === */}
+      {showDashboard && (
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-6">
+          <div className="bg-[#0F1C2E]/80 border border-cyan-400/20 rounded-2xl p-4 flex justify-between items-center">
+            <div><h2 className="text-[18px] font-bold">Welcome, {email.split('@')[0]}! 👋</h2><p className="text-cyan-300 text-[11px] mt-0.5">● Premium Active</p></div>
+            <div className="hidden md:flex gap-4"><div className="text-center"><p className="font-bold">12,847</p><p className="text-[10px] text-white/40">Scanned</p></div><div className="text-center"><p className="font-bold text-green-400">1,247</p><p className="text-[10px] text-white/40">Blocked</p></div></div>
+          </div>
+        </div>
       )}
+      {/* === HERO - Ippudu ALWAYS kanipistundi - Old lo!showDashboard valla blank vastundi === */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 pt-14 pb-10 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div className="inline-flex px-4 py-1.5 rounded-full bg-[#0B1C2E] border border-cyan-500/20 text-[13px] text-cyan-300">🛡️ AI Fraud Detection v2.1</div>
+          <h1 className="mt-6 text-[40px] md:text-[48px] font-bold leading-[1.1]">Stop fraud in real time,<br/>with AI that learns.</h1>
+          <p className="mt-4 text-[14px] leading-6 text-white/50 max-w-[480px]">Monitor transactions, detect anomalies, and block fraudulent activity instantly using our self-learning AI.</p>
+          <div className="mt-8 flex gap-4">{!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-7 py-3 rounded-full bg-[#5EE1FF] text-black font-semibold text-[14px]">Start free trial →</button><button onClick={()=>setShowDemo(true)} className="px-7 py-3 rounded-full border border-cyan-400/30 bg-[#0B1C2E]/50 text-cyan-300 text-[14px]">Try Live Demo</button></>):(<button onClick={()=>setShowDemo(true)} className="px-7 py-3 rounded-full bg-[#5EE1FF] text-black font-semibold text-[14px]">Open Fraud Checker →</button>)}</div>
+        </div>
+        <div className="space-y-4">
+          <div className="bg-[#0F1C2E]/80 border border-white/[0.08] rounded-2xl p-5 flex gap-4"><Shield className="text-cyan-300"/><div><p className="font-semibold text-[15px]">Fraud Shield - AI Protection Active</p><p className="text-[12px] text-white/40">Monitoring live • No threats detected</p></div></div>
+          <div className="bg-[#0F1C2E]/60 border border-white/[0.08] rounded-2xl p-5 flex gap-4"><CreditCard className="text-cyan-300"/><div><p className="font-semibold text-[15px]">Card Security</p><p className="text-[12px] text-white/40">3D Secure enabled • 128-bit encryption</p></div></div>
+          <div className="bg-[#0F1C2E]/60 border border-cyan-400/20 rounded-2xl p-5 flex gap-4"><Brain className="text-cyan-300"/><div><p className="font-semibold text-[15px]">AI Brain - 1,247 blocked today</p><p className="text-[12px] text-white/40">+12% vs yesterday • Confidence 98.4%</p></div></div>
+        </div>
+      </section>
+      <div className="relative z-10 border-t border-white/[0.05] py-8 flex justify-center"><button onClick={()=>setShowDemo(true)} className="px-8 py-3 rounded-full border border-cyan-400/40 bg-[#0B1C2E]/50 text-cyan-300 text-[14px]">Click Here to Open Fraud Checker Card →</button></div>
+      {/* === EDIT END === */}
 
-      {/* LOGIN - HIGHLIGHTED CARD + LIGHT 3D */}
+      {/* LOGIN - SAME AS OLD - NO CHANGE */}
       {showLogin && (
         <div className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
           <div className="absolute inset-0 pointer-events-none"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-cyan-500/10 blur-[100px] rounded-full"></div></div>
@@ -77,6 +84,7 @@ export default function App() {
         </div>
       )}
 
+      {/* FRAUD CHECKER - SAME AS OLD - NO CHANGE */}
       {showDemo && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative bg-[#0F172A] border-2 border-white/[0.12] rounded-[28px] p-8 w-full max-w-5xl max-h-[90vh] overflow-y-auto">
