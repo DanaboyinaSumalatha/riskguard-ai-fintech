@@ -73,86 +73,75 @@ export default function App() {
             </div>
           </section>
 
-          {/* LIVE DEMO - NEAT 3 STEPS */}
+          {/* LIVE DEMO - CARD STYLE - FIXED */}
           <section id="demo" className="max-w-5xl mx-auto p-6">
-            <div className="bg-white/[0.06] border border-white/10 rounded-[24px] p-8">
-              <h3 className="text-[22px] font-bold">Live Demo - Transaction Fraud Checker</h3>
-              <p className="text-[12px] text-white/40 mt-1">Flow: START → Collect → Preprocess → AI Model → Risk Score → Decision → END</p>
+            {/* OUTER CARD - Floating */}
+            <div className="relative bg-[#0F172A] border-2 border-white/[0.12] rounded-[28px] p-8 shadow-[0_25px_80px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)_inset] overflow-hidden">
+              {/* Top Glow Line */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-cyan-500/10 blur-[70px] rounded-full pointer-events-none"></div>
 
-              <div className="grid md:grid-cols-3 gap-8 mt-8">
+              <div className="relative">
+                <div className="inline-flex px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[10px] font-bold tracking-widest text-cyan-300">● LIVE DEMO</div>
+                <h3 className="text-[24px] font-bold mt-3">Transaction Fraud Checker</h3>
+                <p className="text-[11px] text-white/40 mt-1 font-mono">Flow: START → Collect → Preprocess → AI Model → Risk Score → Decision → END</p>
+              </div>
+
+              <div className="relative grid md:grid-cols-3 gap-5 mt-8">
                 {/* STEP 1 */}
-                <div>
+                <div className="bg-[#060A18] border border-white/10 rounded-2xl p-4">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-7 h-7 rounded-full bg-cyan-500 text-black text-xs flex items-center justify-center font-bold">1</div>
+                    <div className="w-7 h-7 rounded-full bg-white text-black text-xs flex items-center justify-center font-bold">1</div>
                     <span className="text-sm font-bold">Enter Transaction</span>
                   </div>
                   <div className="space-y-3">
-                    <div>
-                      <label className="text-[10px] text-white/50 uppercase tracking-widest">Amount (USD)</label>
-                      <input value={amount} onChange={e=>setAmount(e.target.value)} className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-cyan-500/50" placeholder="4000" />
-                    </div>
-                    <div>
-                      <label className="text-[10px] text-white/50 uppercase tracking-widest">Country</label>
-                      <select value={country} onChange={e=>setCountry(e.target.value)} className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl p-3 text-xs outline-none"><option>Same country</option><option>Different country</option><option>High-risk country</option></select>
-                    </div>
-                    <div>
-                      <label className="text-[10px] text-white/50 uppercase tracking-widest">Card Type</label>
-                      <select value={card} onChange={e=>setCard(e.target.value)} className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl p-3 text-xs outline-none"><option>Visa</option><option>MasterCard</option><option>Amex</option><option>Unknown</option></select>
-                    </div>
-                    <div>
-                      <label className="text-[10px] text-white/50 uppercase tracking-widest">Time</label>
-                      <select value={time} onChange={e=>setTime(e.target.value)} className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl p-3 text-xs outline-none"><option>Normal hours</option><option>3 AM (Suspicious)</option><option>Multiple in 1 min</option></select>
-                    </div>
-                    <div>
-                      <label className="text-[10px] text-white/50 uppercase tracking-widest">Device</label>
-                      <select value={device} onChange={e=>setDevice(e.target.value)} className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl p-3 text-xs outline-none"><option>Known device</option><option>New device</option><option>VPN / Proxy</option></select>
-                    </div>
-                    <div>
-                      <label className="text-[10px] text-white/50 uppercase tracking-widest">Merchant</label>
-                      <select value={merchant} onChange={e=>setMerchant(e.target.value)} className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl p-3 text-xs outline-none"><option>Trusted</option><option>New merchant</option><option>Blacklisted</option></select>
-                    </div>
+                    <div><label className="text-[10px] text-white/40 uppercase tracking-widest">Amount (USD)</label><input value={amount} onChange={e=>setAmount(e.target.value)} className="w-full mt-1 bg-[#10182E] border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-cyan-400 text-white" /></div>
+                    <div><label className="text-[10px] text-white/40 uppercase tracking-widest">Country</label><select value={country} onChange={e=>setCountry(e.target.value)} className="w-full mt-1 bg-[#10182E] border border-white/10 rounded-xl p-3 text-xs outline-none text-white"><option>Same country</option><option>Different country</option><option>High-risk country</option></select></div>
+                    <div><label className="text-[10px] text-white/40 uppercase tracking-widest">Card Type</label><select value={card} onChange={e=>setCard(e.target.value)} className="w-full mt-1 bg-[#10182E] border border-white/10 rounded-xl p-3 text-xs outline-none text-white"><option>Visa</option><option>MasterCard</option><option>Amex</option><option>Unknown</option></select></div>
+                    <div><label className="text-[10px] text-white/40 uppercase tracking-widest">Time</label><select value={time} onChange={e=>setTime(e.target.value)} className="w-full mt-1 bg-[#10182E] border border-white/10 rounded-xl p-3 text-xs outline-none text-white"><option>Normal hours</option><option>3 AM (Suspicious)</option><option>Multiple in 1 min</option></select></div>
+                    <div><label className="text-[10px] text-white/40 uppercase tracking-widest">Device</label><select value={device} onChange={e=>setDevice(e.target.value)} className="w-full mt-1 bg-[#10182E] border border-white/10 rounded-xl p-3 text-xs outline-none text-white"><option>Known device</option><option>New device</option><option>VPN / Proxy</option></select></div>
+                    <div><label className="text-[10px] text-white/40 uppercase tracking-widest">Merchant</label><select value={merchant} onChange={e=>setMerchant(e.target.value)} className="w-full mt-1 bg-[#10182E] border border-white/10 rounded-xl p-3 text-xs outline-none text-white"><option>Trusted</option><option>New merchant</option><option>Blacklisted</option></select></div>
                   </div>
                 </div>
 
                 {/* STEP 2 */}
-                <div>
+                <div className="bg-[#060A18] border border-white/10 rounded-2xl p-4 flex flex-col">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-7 h-7 rounded-full bg-cyan-500 text-black text-xs flex items-center justify-center font-bold">2</div>
+                    <div className="w-7 h-7 rounded-full bg-white text-black text-xs flex items-center justify-center font-bold">2</div>
                     <span className="text-sm font-bold">AI Processing</span>
                   </div>
-                  <div className="bg-black/50 border border-white/10 rounded-xl p-4 space-y-3">
-                    <div className="text-[11px] space-y-2">
-                      <div className="flex justify-between"><span className="text-white/40">Collect Data</span><span className="text-cyan-300">✓</span></div>
-                      <div className="text-[10px] text-white/30 bg-white/5 p-2 rounded">• ${amount} • {country} • {card} • {device}</div>
-                      <div className="flex justify-between"><span className="text-white/40">Preprocessing</span><span className="text-cyan-300">✓</span></div>
-                      <div className="flex justify-between"><span className="text-white/40">AI/ML Model</span><span className="text-cyan-300">✓</span></div>
-                      <div className="flex justify-between"><span className="text-white/40">Risk Score</span><span className="text-cyan-300">✓</span></div>
+                  <div className="bg-[#10182E] border border-white/5 rounded-xl p-4 space-y-3 flex-1">
+                    <div className="text-[11px] space-y-3">
+                      <div className="flex justify-between"><span className="text-white/40">Collect Data</span><span className="text-green-400">✓</span></div>
+                      <div className="text-[10px] text-white/50 bg-black/30 p-2.5 rounded-lg border border-white/5">• ${amount} • {country} • {card} • {device}</div>
+                      <div className="flex justify-between"><span className="text-white/40">Preprocessing</span><span className="text-green-400">✓</span></div>
+                      <div className="flex justify-between"><span className="text-white/40">AI/ML Model</span><span className="text-green-400">✓</span></div>
+                      <div className="flex justify-between"><span className="text-white/40">Risk Score</span><span className="text-green-400">✓</span></div>
                     </div>
-                    <button onClick={runCheck} className="w-full py-3.5 bg-white text-black rounded-full font-bold text-sm mt-2">Analyze Transaction →</button>
                   </div>
+                  <button onClick={runCheck} className="w-full py-3.5 bg-white text-black rounded-full font-bold text-sm mt-4 hover:bg-white/90 transition">Analyze Transaction →</button>
                 </div>
 
                 {/* STEP 3 */}
-                <div>
+                <div className="bg-[#060A18] border border-white/10 rounded-2xl p-4">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-7 h-7 rounded-full bg-cyan-500 text-black text-xs flex items-center justify-center font-bold">3</div>
+                    <div className="w-7 h-7 rounded-full bg-white text-black text-xs flex items-center justify-center font-bold">3</div>
                     <span className="text-sm font-bold">Decision</span>
                   </div>
                   {!result? (
-                    <div className="bg-black/30 border border-dashed border-white/10 rounded-xl p-10 text-center">
-                      <div className="text-2xl mb-2">🔍</div>
+                    <div className="bg-[#10182E] border border-dashed border-white/10 rounded-xl p-10 text-center h-[280px] flex flex-col items-center justify-center">
+                      <div className="text-3xl mb-2">🔍</div>
                       <p className="text-xs text-white/30">Click Analyze to see decision</p>
                     </div>
                   ) : (
-                    <div className={`rounded-xl p-5 border ${result.startsWith('SAFE')?'bg-green-500/10 border-green-500/30':'bg-red-500/10 border-red-500/30'}`}>
+                    <div className={`rounded-xl p-5 border h-[280px] flex flex-col ${result.startsWith('SAFE')?'bg-green-500/10 border-green-500/30':'bg-red-500/10 border-red-500/30'}`}>
                       <div className="text-[10px] tracking-widest text-white/40">RISK SCORE</div>
-                      <div className="text-[36px] font-bold leading-none mt-1">{result.split('|')[1]}<span className="text-[16px] text-white/40">/100</span></div>
+                      <div className="text-[36px] font-bold leading-none mt-1 text-white">{result.split('|')[1]}<span className="text-[16px] text-white/40">/100</span></div>
                       <div className={`mt-4 py-2.5 rounded-full text-center text-sm font-bold ${result.startsWith('SAFE')?'bg-green-500 text-black':result.startsWith('REVIEW')?'bg-yellow-500 text-black':'bg-red-500 text-white'}`}>{result.split('|')[0]}</div>
-                      <div className="mt-3 text-center text-xs font-medium">{result.split('|')[2]}</div>
-                      <div className="mt-4 pt-4 border-t border-white/10 text-[11px] space-y-1.5 text-white/50">
-                        <div>Amount ${amount} {parseFloat(amount)>3000?'+40%':'+0%'}</div>
-                        <div>Country {country==='Same country'?'+0%':'+10%+'}</div>
-                        <div>Flow: LOW → APPROVE | MED → REVIEW | HIGH → BLOCK</div>
+                      <div className="mt-3 text-center text-xs font-medium text-white">{result.split('|')[2]}</div>
+                      <div className="mt-auto pt-4 border-t border-white/10 text-[11px] space-y-1.5 text-white/40">
+                        <div>Amount ${amount}</div>
+                        <div>Flow: LOW→APPROVE | HIGH→BLOCK</div>
                       </div>
                     </div>
                   )}
