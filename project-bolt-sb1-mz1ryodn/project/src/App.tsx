@@ -13,7 +13,6 @@ const shieldDataUri = `data:image/svg+xml;utf8,${encodeURIComponent(`
       <stop offset="50%" stop-color="#2DD4FF" stop-opacity="0.4"/>
       <stop offset="100%" stop-color="#0F2A5A" stop-opacity="0.8"/>
     </linearGradient>
-    <filter id="blur"><feGaussianBlur stdDeviation="15"/></filter>
   </defs>
   <ellipse cx="200" cy="240" rx="190" ry="230" fill="url(#glow)" opacity="0.6"/>
   <path d="M200 20 L360 80 L360 200 Q360 360 200 460 Q40 360 40 200 L40 80 Z" fill="url(#glass)" stroke="#A5F3FF" stroke-width="3" stroke-opacity="0.8"/>
@@ -45,7 +44,7 @@ export default function App() {
   const [merchant, setMerchant] = useState('Trusted');
   const [result, setResult] = useState('');
 
-  // ✅ ONLY THIS ADDED - FOR NAV WORKING
+  // ✅ ONLY THIS 1 LINE ADDED
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const handleLogin = () => { if(email){ setShowDashboard(true); setShowLogin(false); } };
@@ -71,14 +70,13 @@ export default function App() {
       <header className="relative z-20 max-w-7xl mx-auto mt-4 mx-4 md:mx-auto">
         <div className="flex justify-between items-center px-6 py-3 rounded-full bg-[#0F1C2E]/60 backdrop-blur-xl border border-white/[0.08]">
           <div className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]"><Shield size={20}/></div><span className="text-[18px] font-bold tracking-tight">RiskGuard AI</span>
-          <div className="hidden md:flex items-center gap-6 ml-10 text-[13px] text-white/40">
-            {/* ✅ ONLY onClick ADDED - REST SAME */}
-            <span onClick={()=>go('product')} className="hover:text-white cursor-pointer">Product</span>
-            <span onClick={()=>go('features')} className="hover:text-white cursor-pointer">Features</span>
-            <span onClick={()=>go('pricing')} className="hover:text-white cursor-pointer">Pricing</span>
-            <span onClick={()=>go('security')} className="hover:text-white cursor-pointer">Security</span>
-            <span onClick={()=>go('docs')} className="hover:text-white cursor-pointer">Docs</span>
-          </div>
+            <div className="hidden md:flex items-center gap-6 ml-10 text-[13px] text-white/40">
+              <span onClick={()=>go('product')} className="hover:text-white cursor-pointer">Product</span>
+              <span onClick={()=>go('features')} className="hover:text-white cursor-pointer">Features</span>
+              <span onClick={()=>go('pricing')} className="hover:text-white cursor-pointer">Pricing</span>
+              <span onClick={()=>go('security')} className="hover:text-white cursor-pointer">Security</span>
+              <span onClick={()=>go('docs')} className="hover:text-white cursor-pointer">Docs</span>
+            </div>
           </div>
           <div className="flex gap-3 items-center">
             {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-5 py-2 rounded-full bg-white/[0.06] border border-white/10 text-[13px] hover:bg-white/10">Login</button><button onClick={()=>setShowLogin(true)} className="px-6 py-2.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[13px] shadow-[0_0_20px_rgba(94,225,255,0.4)]">Get Started</button></>):(<div className="flex items-center gap-2"><span className="text-[11px] flex gap-2 items-center bg-white/[0.06] border border-white/10 px-3 py-1.5 rounded-full max-w-[150px] truncate"><User size={12}/>{email}</span><button onClick={()=>{setShowDashboard(false); setEmail('');}} className="px-4 py-1.5 rounded-full bg-white/10 text-[11px] flex gap-1 items-center"><LogOut size={12}/>Logout</button></div>)}
