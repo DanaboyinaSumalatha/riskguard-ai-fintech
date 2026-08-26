@@ -15,7 +15,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#050A14] text-white overflow-hidden relative">
-      {/* Header */}
       <header className="flex justify-between items-center p-6 max-w-7xl mx-auto">
         <div className="flex items-center gap-2 font-bold text-xl">
           <Shield className="text-cyan-400" /> RiskGuard AI
@@ -37,17 +36,13 @@ export default function App() {
 
       {!showDashboard? (
         <>
-          {/* HERO - NO CIRCLE - 3D COMBO */}
           <section className="max-w-7xl mx-auto px-6 pt-10 pb-20 grid md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="inline-flex gap-2 text-xs px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 mb-4">✨ Now in GA • AI Fraud Detection v2.1</div>
-
-              {/* FIXED HEADING - PERFECT 2 LINES */}
               <h1 className="text-[40px] md:text-[54px] font-bold leading-[1.05] tracking-tight max-w-[580px]">
                 Stop fraud in real time,<br />
                 with AI that learns.
               </h1>
-
               <p className="mt-4 text-white/60 max-w-lg">RiskGuard AI detects and prevents fraud across payments, accounts, and onboards — 10x faster, with 99.9% accuracy.</p>
               <div className="mt-6 flex gap-3">
                 <button onClick={()=>setShowLogin(true)} className="px-6 py-3 rounded-full bg-white text-black font-semibold">Start free trial →</button>
@@ -60,7 +55,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* RIGHT SIDE - 3D FLOWING ICONS */}
             <div className="relative h-[450px] w-full">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-[30px] blur-2xl" />
               <motion.div animate={{ x: [20, -20, 20], y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-10 right-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 w-48 shadow-2xl">
@@ -88,15 +82,21 @@ export default function App() {
             </div>
           </section>
 
+          {/* NEW 6 OPTIONS DEMO */}
           <section id="demo" className="max-w-4xl mx-auto p-6">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
-              <h3 className="text-xl font-semibold mb-4">Live Demo - Transaction Fraud Checker</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <input value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Amount (USD) 0.00" className="bg-black/30 border border-white/10 rounded-lg p-3" />
-                <select className="bg-black/30 border border-white/10 rounded-lg p-3"><option>Same country</option><option>Different country</option></select>
+              <h3 className="text-xl font-semibold mb-1">Live Demo - Transaction Fraud Checker</h3>
+              <p className="text-xs text-white/40 mb-4">Real-time AI analysis • 6 parameters</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div><label className="text-[11px] text-white/50">Amount (USD)</label><input value={amount} onChange={e=>setAmount(e.target.value)} placeholder="0.00" className="w-full mt-1 bg-black/30 border border-white/10 rounded-lg p-3" /></div>
+                <div><label className="text-[11px] text-white/50">Country</label><select className="w-full mt-1 bg-black/30 border border-white/10 rounded-lg p-3"><option>Same country</option><option>Different country</option><option>High-risk country</option></select></div>
+                <div><label className="text-[11px] text-white/50">Card Type</label><select className="w-full mt-1 bg-black/30 border border-white/10 rounded-lg p-3"><option>Visa</option><option>MasterCard</option><option>Amex</option><option>Unknown</option></select></div>
+                <div><label className="text-[11px] text-white/50">Transaction Time</label><select className="w-full mt-1 bg-black/30 border border-white/10 rounded-lg p-3"><option>Normal hours</option><option>3 AM (Suspicious)</option><option>Multiple in 1 min</option></select></div>
+                <div><label className="text-[11px] text-white/50">Device</label><select className="w-full mt-1 bg-black/30 border border-white/10 rounded-lg p-3"><option>Known device</option><option>New device</option><option>VPN / Proxy</option></select></div>
+                <div><label className="text-[11px] text-white/50">Merchant</label><select className="w-full mt-1 bg-black/30 border border-white/10 rounded-lg p-3"><option>Trusted</option><option>New merchant</option><option>Blacklisted</option></select></div>
               </div>
-              <button onClick={()=>{ const v=parseFloat(amount); if(v>2000) setResult('BLOCKED - High risk!'); else if(v>0) setResult('SAFE - Low risk 12/100'); else setResult('Enter amount'); }} className="mt-4 w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold">Analyze Transaction</button>
-              {result && <div className={`mt-3 p-3 rounded-lg text-center font-bold ${result.includes('BLOCKED')? 'bg-red-500/20 text-red-300' : 'bg-green-500/20 text-green-300'}`}>{result}</div>}
+              <button onClick={()=>{ const v=parseFloat(amount); if(v>2000) setResult('BLOCKED - High risk! 89/100'); else if(v>0) setResult('SAFE - Low risk 12/100 - Approved'); else setResult('Enter amount'); }} className="mt-6 w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold">Analyze Transaction → Run AI Check</button>
+              {result && <div className={`mt-3 p-3 rounded-lg text-center font-bold ${result.includes('BLOCKED')? 'bg-red-500/20 text-red-300 border border-red-500/20' : 'bg-green-500/20 text-green-300 border border-green-500/20'}`}>{result}</div>}
             </div>
           </section>
         </>
