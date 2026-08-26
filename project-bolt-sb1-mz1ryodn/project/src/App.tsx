@@ -43,7 +43,6 @@ export default function App() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-cyan-500/5 blur-[100px] rounded-full"></div>
       </div>
 
-      {/* HEADER - Login & Get Started WORK */}
       <header className="relative z-10 flex justify-between items-center px-6 md:px-16 py-5 border-b border-white/[0.05]">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center"><Shield size={20} /></div>
@@ -94,20 +93,45 @@ export default function App() {
         </section>
       )}
 
-      {/* LOGIN MODAL - NEW ADD */}
+      {/* LOGIN - HIGHLIGHTED CARD + LIGHT 3D - ONLY THIS CHANGED */}
       {showLogin && (
-        <div className="fixed inset-0 z-[80] bg-black/70 backdrop-blur flex items-center justify-center p-4">
-          <div className="bg-[#0B1220] border border-white/10 rounded-2xl p-6 w-full max-w-sm">
-            <h3 className="text-xl font-bold mb-4">Login to RiskGuard AI</h3>
-            <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter your Email" className="w-full bg-black/30 border border-white/10 rounded-lg p-3 mb-3 text-sm text-white outline-none" />
-            <input type="password" placeholder="Password" className="w-full bg-black/30 border border-white/10 rounded-lg p-3 mb-4 text-sm text-white outline-none" />
-            <button onClick={handleLogin} className="w-full py-3 bg-white text-black rounded-full font-semibold text-sm">Login & Continue</button>
-            <button onClick={()=>setShowLogin(false)} className="w-full mt-2 py-2 text-sm text-white/50">Cancel</button>
+        <div className="fixed inset-0 z-[80] bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
+          {/* Light 3D Background - Simple & Neat */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-cyan-500/10 blur-[100px] rounded-full"></div>
+            <div className="absolute top-[25%] left-[22%] w-24 h-24 rounded-full bg-gradient-to-br from-cyan-400/10 to-blue-500/10 border border-cyan-400/20 backdrop-blur flex items-center justify-center shadow-[0_0_20px_rgba(94,225,255,0.15)]">🛡️</div>
+            <div className="absolute top-[28%] right-[24%] w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400/10 to-blue-500/10 border border-cyan-400/20 backdrop-blur flex items-center justify-center shadow-[0_0_20px_rgba(94,225,255,0.15)]">🔒</div>
+            <div className="absolute bottom-[20%] left-[35%] w-32 h-32 bg-cyan-400/5 blur-[30px] rounded-full"></div>
+            <div className="absolute bottom-[25%] right-[35%] w-32 h-32 bg-blue-400/5 blur-[30px] rounded-full"></div>
+          </div>
+
+          <div className="relative w-full max-w-[380px]">
+            <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-400/30 via-cyan-300/20 to-blue-500/20 rounded-[24px] blur-[15px]"></div>
+            <div className="relative bg-[#0F1C2E]/90 backdrop-blur-xl border border-cyan-400/20 rounded-[24px] p-7 shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_40px_rgba(94,225,255,0.1)]">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-blue-600/20 border border-cyan-400/20 flex items-center justify-center mx-auto mb-4">
+                <Shield size={28} className="text-cyan-300" />
+              </div>
+              <h3 className="text-[22px] font-bold text-center">Welcome Back</h3>
+              <p className="text-[12px] text-white/40 text-center mt-1">Login to RiskGuard AI</p>
+              <div className="mt-6 space-y-3">
+                <div>
+                  <label className="text-[10px] tracking-widest text-white/40 uppercase ml-1">Email</label>
+                  <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@company.com" className="w-full mt-1.5 bg-[#060A18] border border-white/10 rounded-xl p-3.5 text-sm text-white outline-none focus:border-cyan-400/30 focus:bg-[#0A1425] transition" />
+                </div>
+                <div>
+                  <label className="text-[10px] tracking-widest text-white/40 uppercase ml-1">Password</label>
+                  <input type="password" placeholder="••••••••" className="w-full mt-1.5 bg-[#060A18] border border-white/10 rounded-xl p-3.5 text-sm text-white outline-none focus:border-cyan-400/30 transition" />
+                </div>
+              </div>
+              <button onClick={handleLogin} className="w-full mt-6 py-3.5 bg-[#5EE1FF] text-black rounded-full font-bold text-[14px] shadow-[0_0_25px_rgba(94,225,255,0.3)] hover:bg-[#7FE8FF] transition">Login & Continue →</button>
+              <div className="mt-4 flex items-center gap-2 text-[11px] text-white/30 justify-center"><div className="w-1 h-1 rounded-full bg-green-400"></div> Secure login • 256-bit encrypted</div>
+              <button onClick={()=>setShowLogin(false)} className="w-full mt-4 py-2 text-[13px] text-white/40 hover:text-white transition">Cancel</button>
+            </div>
           </div>
         </div>
       )}
 
-      {/* OLD Transaction Fraud Checker SAME - NO CHANGE */}
       {showDemo && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative bg-[#0F172A] border-2 border-white/[0.12] rounded-[28px] p-8 w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-[0_25px_80px_rgba(0,0,0,0.8)]">
