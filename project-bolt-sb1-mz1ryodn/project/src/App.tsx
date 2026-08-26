@@ -41,7 +41,13 @@ export default function App() {
           <section className="max-w-7xl mx-auto px-6 pt-10 pb-20 grid md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="inline-flex gap-2 text-xs px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 mb-4">✨ Now in GA • AI Fraud Detection v2.1</div>
-              <h1 className="text-5xl md:text-6xl font-bold leading-[1.1]">Stop fraud in real time,<br/>with AI that learns.</h1>
+
+              {/* FIXED HEADING - PERFECT 2 LINES */}
+              <h1 className="text-[40px] md:text-[54px] font-bold leading-[1.05] tracking-tight max-w-[580px]">
+                Stop fraud in real time,<br />
+                with AI that learns.
+              </h1>
+
               <p className="mt-4 text-white/60 max-w-lg">RiskGuard AI detects and prevents fraud across payments, accounts, and onboards — 10x faster, with 99.9% accuracy.</p>
               <div className="mt-6 flex gap-3">
                 <button onClick={()=>setShowLogin(true)} className="px-6 py-3 rounded-full bg-white text-black font-semibold">Start free trial →</button>
@@ -54,19 +60,15 @@ export default function App() {
               </div>
             </div>
 
-            {/* RIGHT SIDE - 3D FLOWING ICONS - REPLACES CIRCLE */}
+            {/* RIGHT SIDE - 3D FLOWING ICONS */}
             <div className="relative h-[450px] w-full">
-              {/* Glowing background */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-[30px] blur-2xl" />
-
-              {/* 3 FLOATING 3D CARDS - RIGHT TO LEFT FLOW */}
               <motion.div animate={{ x: [20, -20, 20], y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-10 right-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 w-48 shadow-2xl">
                 <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center mb-3"><Shield /></div>
                 <p className="text-sm font-semibold">Fraud Shield</p>
                 <p className="text-[11px] text-white/50">AI Protection Active</p>
                 <div className="mt-2 text-cyan-400 text-xs">✓ 99.9% Safe</div>
               </motion.div>
-
               <motion.div animate={{ x: [-20, 20, -20], y: [0, 10, 0] }} transition={{ duration: 7, repeat: Infinity, delay: 1 }} className="absolute top-48 left-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 w-52 shadow-2xl">
                 <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center mb-3"><CreditCard /><Lock size={14} className="absolute ml-4 mt-4"/></div>
                 <p className="text-sm font-semibold">Card Security</p>
@@ -75,21 +77,17 @@ export default function App() {
                   <div className="h-1 w-8 bg-cyan-400 rounded-full" /><div className="h-1 w-4 bg-white/20 rounded-full" />
                 </div>
               </motion.div>
-
               <motion.div animate={{ x: [15, -15, 15], y: [0, -15, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 2 }} className="absolute bottom-10 right-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 w-48 shadow-2xl">
                 <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-400 to-cyan-600 flex items-center justify-center mb-3"><Brain /></div>
                 <p className="text-sm font-semibold">AI Brain</p>
                 <div className="flex gap-1 mt-1"><BarChart3 size={14} className="text-cyan-400"/> <span className="text-[11px]">1,247 blocked today</span></div>
               </motion.div>
-
-              {/* FLOWING PARTICLES RIGHT TO LEFT */}
               {[...Array(8)].map((_, i) => (
                 <motion.div key={i} className="absolute h-[2px] w-24 bg-gradient-to-l from-cyan-400 to-transparent" style={{ top: `${20 + i*9}%`, right: -20 }} animate={{ x: [-50, -500], opacity: [0,1,0] }} transition={{ duration: 3, repeat: Infinity, delay: i*0.4 }} />
               ))}
             </div>
           </section>
 
-          {/* DEMO SECTION */}
           <section id="demo" className="max-w-4xl mx-auto p-6">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
               <h3 className="text-xl font-semibold mb-4">Live Demo - Transaction Fraud Checker</h3>
@@ -103,7 +101,6 @@ export default function App() {
           </section>
         </>
       ) : (
-        /* DASHBOARD */
         <section className="max-w-6xl mx-auto p-6">
           <h2 className="text-3xl font-bold">Welcome {email.split('@')[0]}! 👋</h2>
           <p className="text-cyan-400 text-sm mt-1">Premium Plan Active - Unlimited Protection</p>
@@ -123,7 +120,6 @@ export default function App() {
         </section>
       )}
 
-      {/* LOGIN MODAL */}
       {showLogin && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur flex items-center justify-center p-4 z-50">
           <div className="bg-[#0B1220] border border-white/10 rounded-2xl p-6 w-full max-w-sm">
