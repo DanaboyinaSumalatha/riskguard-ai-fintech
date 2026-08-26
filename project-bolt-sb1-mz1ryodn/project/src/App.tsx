@@ -67,15 +67,31 @@ export default function App() {
           {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-8 py-3.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[14px] shadow-[0_0_25px_rgba(94,225,255,0.5)]">Start Free Trial →</button><button onClick={()=>setShowDemo(true)} className="px-8 py-3.5 rounded-full border border-white/15 bg-white/[0.05] backdrop-blur text-white text-[14px] hover:bg-white/10">See How It Works →</button></>):(<button onClick={()=>setShowDemo(true)} className="px-10 py-4 rounded-full bg-[#5EE1FF] text-black font-bold text-[15px] shadow-[0_0_30px_rgba(94,225,255,0.6)]">Click Here to Open Fraud Checker Card →</button>)}
         </div>
 
-        {/* 3D SHIELD - DIRECT CODE IMAGE - 100% WORKING */}
-        <div className="mt-12 relative mx-auto w-[340px] md:w-[520px] flex justify-center">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-400/25 blur-[90px] rounded-full"></div>
-          <img
-            src="https://cdn3d.iconscout.com/3d/premium/thumb/shield-3d-icon-download-in-png-blend-fbx-gltf-file-formats--security-protection-safety-pack-sign-symbols-icons-5182981.png"
-            alt="3D Shield"
-            className="relative w-full h-auto object-contain drop-shadow-[0_0_80px_rgba(34,211,238,0.8)]"
-            style={{ filter: 'drop-shadow(0 0 30px rgba(34,211,238,0.6)) hue-rotate(180deg) saturate(2)' }}
-          />
+        {/* 3D SHIELD - PURE CODE - 100% WORKING */}
+        <div className="mt-12 relative mx-auto w-[340px] h-[340px] md:w-[480px] md:h-[480px] flex items-center justify-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-blue-600/20 blur-[80px] rounded-[60px]"></div>
+          <div className="relative w-full h-full rounded-[48px] bg-gradient-to-br from-[#0F1C2E]/90 to-[#050A14]/90 border border-cyan-400/20 backdrop-blur-xl shadow-[0_0_80px_rgba(34,211,238,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+              <div className="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-cyan-400 to-transparent"></div>
+              <div className="absolute top-[30%] left-[20%] w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+              <div className="absolute bottom-[30%] right-[20%] w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 blur-[30px] bg-cyan-400/30 rounded-full scale-150"></div>
+              <div className="relative w-[220px] h-[260px] md:w-[260px] md:h-[300px] rounded-t-[60px] rounded-b-[120px] bg-gradient-to-br from-cyan-200/30 via-[#5EE1FF]/40 to-blue-600/30 border border-cyan-300/50 shadow-[0_0_60px_rgba(94,225,255,0.6),inset_0_0_30px_rgba(94,225,255,0.3)] backdrop-blur flex items-center justify-center">
+                <div className="absolute inset-[2px] rounded-t-[58px] rounded-b-[118px] bg-gradient-to-br from-white/20 to-transparent"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-6 h-6 bg-cyan-300 rounded-full animate-ping absolute"></div>
+                  <div className="w-6 h-6 bg-[#5EE1FF] rounded-full shadow-[0_0_20px_#5EE1FF] relative"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 border border-cyan-400/50 rounded-full animate-spin" style={{ animationDuration: '3s' }}></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-cyan-400/20 rounded-full"></div>
+                </div>
+                <div className="absolute top-4 left-6 w-[40%] h-[30%] bg-gradient-to-br from-white/30 to-transparent rounded-full blur-[2px] rotate-12"></div>
+              </div>
+            </div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-[1px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent"></div>
+          </div>
         </div>
 
         <div className="mt-10 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
