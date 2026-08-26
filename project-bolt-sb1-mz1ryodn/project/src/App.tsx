@@ -13,6 +13,8 @@ export default function App() {
   const [time, setTime] = useState('Normal hours');
   const [device, setDevice] = useState('Known device');
   const [merchant, setMerchant] = useState('Trusted');
+  const [steps, setSteps] = useState<string[]>([]);
+  const [analyzing, setAnalyzing] = useState(false);
 
   const handleLogin = () => {
     if(email){ setShowDashboard(true); setShowLogin(false); }
@@ -90,7 +92,7 @@ export default function App() {
           <section id="demo" className="max-w-5xl mx-auto p-6">
             <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-6 backdrop-blur">
               <h3 className="text-xl font-semibold">Live Demo - Transaction Fraud Checker</h3>
-              <p className="text-xs text-white/40 mb-5">Real-time AI analysis • 6 parameters • Click to select</p>
+              <p className="text-xs text-white/40 mb-5">Flowchart: START → Collect → Preprocess → AI Model → Risk Score → Decision</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
@@ -98,31 +100,60 @@ export default function App() {
                     <label className="text-[11px] text-white/50">Amount (USD)</label>
                     <input value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Enter amount - ex: 3500" className="w-full mt-1 bg-black/40 border border-cyan-500/20 rounded-lg p-3 focus:border-cyan-400 outline-none" />
                   </div>
-
                   <div><p className="text-[11px] text-white/50 mb-2">Country - {country}</p><div className="flex flex-wrap gap-2">{['Same country','Different country','High-risk country'].map(o=><button key={o} onClick={()=>setCountry(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${country===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
-
                   <div><p className="text-[11px] text-white/50 mb-2">Card Type - {card}</p><div className="flex flex-wrap gap-2">{['Visa','MasterCard','Amex','Unknown'].map(o=><button key={o} onClick={()=>setCard(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${card===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
-
                   <div><p className="text-[11px] text-white/50 mb-2">Transaction Time - {time}</p><div className="flex flex-wrap gap-2">{['Normal hours','3 AM (Suspicious)','Multiple in 1 min'].map(o=><button key={o} onClick={()=>setTime(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${time===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
-
                   <div><p className="text-[11px] text-white/50 mb-2">Device - {device}</p><div className="flex flex-wrap gap-2">{['Known device','New device','VPN / Proxy'].map(o=><button key={o} onClick={()=>setDevice(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${device===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
-
                   <div><p className="text-[11px] text-white/50 mb-2">Merchant - {merchant}</p><div className="flex flex-wrap gap-2">{['Trusted','New merchant','Blacklisted'].map(o=><button key={o} onClick={()=>setMerchant(o)} className={`px-3 py-2 rounded-full text-[11px] border transition ${merchant===o?'bg-cyan-500 text-black border-cyan-500 font-bold':'bg-white/5 border-white/10 hover:bg-white/10'}`}>{o}</button>)}</div></div>
                 </div>
 
                 <div>
-                  <button onClick={()=>{
+                  <button onClick={async ()=>{
                     const v=parseFloat(amount)||0;
                     if(v===0){setResult('ERROR|Please enter amount'); return;}
+                    setAnalyzing(true); setResult(''); setSteps([]);
+                    const addStep = (s:string) => setSteps(prev=>[...prev, s]);
+                    addStep('▶ START');
+                    await new Promise(r=>setTimeout(r, 400));
+                    addStep('📥 Enter Transaction');
+                    await new Promise(r=>setTimeout(r, 400));
+                    addStep(`📦 Collect Transaction Data: $${v}, ${country}, ${card}`);
+                    await new Promise(r=>setTimeout(r, 500));
+                    addStep('⚙️ Data Preprocessing...');
+                    await new Promise(r=>setTimeout(r, 500));
+                    addStep('✓ Cleaned & Normalized');
+                    addStep('🧠 Fraud Detection AI/ML Model');
+                    await new Promise(r=>setTimeout(r, 700));
+                    addStep('📊 Calculate Risk Score');
+                    await new Promise(r=>setTimeout(r, 400));
                     let score=0; let details=[];
                     if(v>3000){score+=40; details.push(`Amount $${v} > $3000 CRITICAL +40%`)} else if(v>2000){score+=25; details.push(`Amount $${v} > $2000 High +25%`)} else {details.push(`Amount $${v} Normal +0%`)}
-                    if(country==='High-risk country'){score+=25; details.push(`Country: ${country} +25%`)} else if(country==='Different country'){score+=10; details.push(`Country: Different +10%`)} else {details.push(`Country: Same country +0% Safe`)}
+                    if(country==='High-risk country'){score+=25; details.push(`Country: ${country} +25%`)} else if(country==='Different country'){score+=10; details.push(`Country: Different +10%`)} else {details.push(`Country: Same +0% Safe`)}
                     if(card==='Unknown'){score+=15; details.push(`Card: Unknown +15%`)} else {details.push(`Card: ${card} +0% Safe`)}
                     if(time==='3 AM (Suspicious)'){score+=20; details.push(`Time: ${time} +20%`)} else if(time==='Multiple in 1 min'){score+=35; details.push(`Time: ${time} +35%`)} else {details.push(`Time: ${time} +0% Safe`)}
                     if(device==='VPN / Proxy'){score+=15; details.push(`Device: ${device} +15%`)} else if(device==='New device'){score+=5; details.push(`Device: New +5%`)} else {details.push(`Device: Known +0% Safe`)}
                     if(merchant==='Blacklisted'){score+=30; details.push(`Merchant: ${merchant} +30%`)} else if(merchant==='New merchant'){score+=10; details.push(`Merchant: New +10%`)} else {details.push(`Merchant: Trusted +0% Safe`)}
-                    const status=score>=50?'BLOCKED':'SAFE'; setResult(`${status}|Risk Score ${score}/100|${details.join('|')}|DECISION: ${status==='BLOCKED'?'🚫 Transaction BLOCKED & Card Frozen Immediately':'✅ Approved - Payment Successful'}`);
-                  }} className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold hover:from-cyan-400 hover:to-blue-500 transition">Analyze Transaction → Run AI Check</button>
+                    addStep(`✓ Risk Score = ${score}/100`);
+                    await new Promise(r=>setTimeout(r, 300));
+                    if(score<40){ addStep('🔀 Risk? LOW → APPROVE → Transaction Successful'); }
+                    else if(score<70){ addStep('🔀 Risk? MEDIUM → REVIEW → Manual Review'); }
+                    else { addStep('🔀 Risk? HIGH → BLOCK → Alert Merchant → Flag Transaction'); }
+                    await new Promise(r=>setTimeout(r, 400));
+                    addStep('💾 Store Audit Log');
+                    await new Promise(r=>setTimeout(r, 300));
+                    addStep('■ END');
+                    const status=score>=50?'BLOCKED':'SAFE';
+                    setResult(`${status}|Risk Score ${score}/100|${details.join('|')}|DECISION: ${status==='BLOCKED'?'🚫 Transaction BLOCKED & Card Frozen':'✅ Approved - Payment Successful'}`);
+                    setAnalyzing(false);
+                  }} disabled={analyzing} className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold disabled:opacity-50">
+                  {analyzing?'Analyzing... ⏳':'Analyze Transaction → Run AI Check'}
+                  </button>
+
+                  {steps.length>0 && (
+                    <div className="mt-4 bg-black/60 border border-cyan-500/30 rounded-xl p-3 text-[11px] space-y-1 font-mono max-h-[200px] overflow-y-auto">
+                      {steps.map((s,i)=><div key={i} className="text-cyan-300/90 animate-pulse">{s}</div>)}
+                    </div>
+                  )}
 
                   {result && (
                     <div className={`mt-4 p-4 rounded-xl border text-sm ${result.includes('BLOCKED')? 'bg-red-500/10 border-red-500/30' : result.includes('ERROR')?'bg-yellow-500/10 border-yellow-500/20' : 'bg-green-500/10 border-green-500/30'}`}>
@@ -135,12 +166,8 @@ export default function App() {
                   )}
 
                   <div className="mt-4 bg-black/40 border border-white/10 rounded-lg p-3 text-[11px] text-white/50 leading-relaxed">
-                    <p className="font-semibold text-white/70 mb-1">🧠 How AI Calculates:</p>
-                    <p>Amount {'>'} $3000 = +40%, {'>'} $2000 = +25%</p>
-                    <p>High-risk country + Blacklisted = Auto BLOCK</p>
-                    <p>Score {'>'}= 50 = BLOCKED, {'<'} 50 = SAFE</p>
-                    <p className="mt-2 text-cyan-400">Try: 50 + Same + Trusted = SAFE</p>
-                    <p className="text-red-400">Try: 3500 + High-risk + Blacklisted + VPN + 3AM = BLOCKED 100/100</p>
+                    <p className="font-semibold text-white/70 mb-1">📋 Flowchart Flow:</p>
+                    <p>START → Collect → Preprocess → AI Model → Risk Score → LOW/MED/HIGH → Log → END</p>
                   </div>
                 </div>
               </div>
