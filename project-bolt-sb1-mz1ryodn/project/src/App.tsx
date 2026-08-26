@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, CreditCard, Brain, X, LogOut, User, Check, Zap } from 'lucide-react';
+import shiledImage from './shiled-3d.png';
 
 export default function App() {
   const [showDemo, setShowDemo] = useState(false);
@@ -67,19 +68,13 @@ export default function App() {
           {!showDashboard? (<><button onClick={()=>setShowLogin(true)} className="px-8 py-3.5 rounded-full bg-[#5EE1FF] text-black font-bold text-[14px] shadow-[0_0_25px_rgba(94,225,255,0.5)]">Start Free Trial →</button><button onClick={()=>setShowDemo(true)} className="px-8 py-3.5 rounded-full border border-white/15 bg-white/[0.05] backdrop-blur text-white text-[14px] hover:bg-white/10">See How It Works →</button></>):(<button onClick={()=>setShowDemo(true)} className="px-10 py-4 rounded-full bg-[#5EE1FF] text-black font-bold text-[15px] shadow-[0_0_30px_rgba(94,225,255,0.6)]">Click Here to Open Fraud Checker Card →</button>)}
         </div>
 
-        {/* 3D SHIELD IMAGE - CORRECT SPELLING - ONLY CHANGE */}
+        {/* 3D SHIELD - IMAGE FROM SRC FOLDER - ONLY THIS CHANGED */}
         <div className="mt-12 relative mx-auto w-[360px] md:w-[500px] flex justify-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-cyan-400/20 blur-[80px] rounded-full"></div>
           <img
-            src="/shield-3d.png"
+            src={shiledImage}
             alt="3D Shield"
             className="relative w-full h-auto object-contain drop-shadow-[0_0_80px_rgba(34,211,238,0.8)]"
-            onError={(e) => {
-              const target = e.currentTarget as HTMLImageElement;
-              if (target.src.includes('shield-3d.png')) {
-                target.src = '/shiled-3d.png';
-              }
-            }}
           />
         </div>
 
